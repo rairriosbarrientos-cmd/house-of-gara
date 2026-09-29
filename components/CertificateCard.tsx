@@ -27,9 +27,51 @@ export function CertificateCard({
   const { product, code } = result;
   /** El sello de cera (anillo + destello) solo se justifica en el momento del tap/escaneo real. */
   const isTapMoment = source === "nfc" || source === "qr";
+  const ownerFirstName = code.ownerName.trim().split(/\s+/)[0];
 
   return (
     <div className="stamp-reveal relative overflow-hidden rounded-lg border border-brass bg-charcoal">
+      {source === "nfc" ? (
+        /* Pantalla de verificación del tap: solo CSS, se desvanece sola (ver .nfc-verify en globals.css). */
+        <div
+          aria-hidden
+          className="nfc-verify pointer-events-none absolute inset-0 z-30 flex flex-col items-center justify-center gap-5 bg-charcoal"
+        >
+          <svg viewBox="0 0 64 64" className="h-20 w-20 text-brass-bright">
+            <circle cx="32" cy="32" r="28" fill="none" stroke="currentColor" strokeOpacity="0.15" strokeWidth="2" />
+            <circle
+              cx="32"
+              cy="32"
+              r="28"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              pathLength={100}
+              className="nfc-verify-ring"
+            />
+            <path
+              d="M21 33 l7 7 l15 -16"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              pathLength={100}
+              className="nfc-verify-check"
+            />
+          </svg>
+          <div className="relative h-4 w-full text-center font-data text-[11px] uppercase tracking-[0.22em]">
+            <span className="nfc-verify-pending absolute inset-x-0 text-parchment-dim">
+              Verificando autenticidad…
+            </span>
+            <span className="nfc-verify-done absolute inset-x-0 text-brass-bright">
+              Pieza auténtica
+            </span>
+          </div>
+        </div>
+      ) : null}
+
       {isTapMoment ? (
         <div
           aria-hidden
@@ -78,6 +120,12 @@ export function CertificateCard({
         <h2 className="mt-2 font-display text-2xl text-parchment sm:text-3xl">
           {product.name}
         </h2>
+        {source === "nfc" && ownerFirstName ? (
+          <p className="mt-2 text-sm text-parchment-dim">
+            Hola, <span className="text-parchment">{ownerFirstName}</span>. Esta pieza es tuya y está registrada en el
+            atelier.
+          </p>
+        ) : null}
 
         <dl className="mt-6 grid gap-3 border-t border-hairline pt-6 text-sm sm:grid-cols-2">
           <div className="flex justify-between gap-4 sm:block sm:space-y-1">
