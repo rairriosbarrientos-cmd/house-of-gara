@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+Disallow: /verify/
+
+Sitemap: https://garaleathergoods.mx/sitemap.xml
