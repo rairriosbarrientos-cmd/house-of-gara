@@ -202,6 +202,70 @@ body::after {
   animation: seal-sheen 1.4s 0.85s cubic-bezier(0.4, 0, 0.2, 1) both;
 }
 
+/* Pantalla "Verificando autenticidad… ✓" que cubre el certificado al llegar por NFC.
+   Todo es CSS: el anillo se cierra, aparece la palomita y la capa se desvanece. */
+@keyframes nfc-verify-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes nfc-verify-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes nfc-verify-text-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes nfc-verify-text-in {
+  to {
+    opacity: 1;
+  }
+}
+
+.nfc-verify {
+  animation: nfc-verify-out 0.45s 1.9s ease-in forwards;
+}
+
+.nfc-verify-ring {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  transform: rotate(-90deg);
+  transform-origin: center;
+  animation: nfc-verify-draw 1s 0.1s cubic-bezier(0.6, 0, 0.3, 1) forwards;
+}
+
+.nfc-verify-check {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: nfc-verify-draw 0.35s 1.15s ease-out forwards;
+}
+
+.nfc-verify-pending {
+  animation: nfc-verify-text-out 0.2s 1.1s forwards;
+}
+
+.nfc-verify-done {
+  opacity: 0;
+  animation: nfc-verify-text-in 0.25s 1.2s forwards;
+}
+
+/* La capa de verificación retrasa el sello: que caiga justo cuando se va la capa. */
+.nfc-verify ~ div .seal-ring,
+.nfc-verify ~ .seal-drop {
+  animation-delay: 2.1s;
+}
+
+.nfc-verify ~ .seal-drop .seal-sheen {
+  animation-delay: 2.8s;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -211,6 +275,9 @@ body::after {
   .seal-ring,
   .seal-sheen {
     animation: none;
+  }
+  .nfc-verify {
+    display: none;
   }
 }
 
