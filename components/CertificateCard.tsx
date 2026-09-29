@@ -8,6 +8,9 @@ const dateFormatter = new Intl.DateTimeFormat("es-MX", {
   dateStyle: "long",
 });
 
+/** WhatsApp del atelier (México, 52 + 10 dígitos). */
+const WHATSAPP_NUMBER = "527444001162";
+
 /** De dónde llegó la persona a este certificado — cambia el sello de entrada y la etiqueta. */
 export type CertificateSource = "nfc" | "qr" | "search";
 
@@ -188,6 +191,16 @@ export function CertificateCard({
             className="inline-flex items-center gap-2 rounded-full bg-brass px-5 py-2.5 text-sm font-semibold text-ink transition hover:bg-brass-bright"
           >
             Descargar certificado (PDF)
+          </a>
+          <a
+            href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+              `Hola GARA, tengo la pieza ${product.name} (${code.serial}).`,
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full border border-brass/60 px-5 py-2.5 text-sm font-semibold text-brass-bright transition hover:bg-brass/10"
+          >
+            Contactar al atelier
           </a>
           <Link
             href={`/productos/${product.slug}`}
