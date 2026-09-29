@@ -1,0 +1,232 @@
+/* GARA · experiencia de verificación NFC (se agrega encima del certificado estático). */
+
+.gnfc-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(200, 161, 78, 0.14), transparent 55%),
+    #070504;
+  color: #f3ede0;
+  text-align: center;
+  cursor: pointer;
+  animation: gnfc-out 0.5s 2.6s ease-in forwards;
+}
+
+.gnfc-overlay.is-leaving {
+  animation: gnfc-out 0.3s ease-in forwards;
+}
+
+.gnfc-logo {
+  width: 44px;
+  height: auto;
+  opacity: 0;
+  animation: gnfc-in 0.5s 0.05s ease-out forwards;
+}
+
+.gnfc-seal {
+  width: 112px;
+  height: 112px;
+  color: #ecc878;
+  filter: drop-shadow(0 0 18px rgba(236, 200, 120, 0.25));
+}
+
+.gnfc-ring {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  transform: rotate(-90deg);
+  transform-origin: center;
+  animation: gnfc-draw 1.05s 0.2s cubic-bezier(0.6, 0, 0.3, 1) forwards;
+}
+
+.gnfc-check {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: gnfc-draw 0.35s 1.3s ease-out forwards;
+}
+
+.gnfc-pulse {
+  transform-origin: center;
+  opacity: 0;
+  animation: gnfc-pulse 0.9s 1.3s ease-out forwards;
+}
+
+.gnfc-status {
+  position: relative;
+  height: 16px;
+  width: 100%;
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.gnfc-status span {
+  position: absolute;
+  inset: 0;
+}
+
+.gnfc-pending {
+  color: #a99e88;
+  animation: gnfc-fade 0.2s 1.2s forwards;
+}
+
+.gnfc-done {
+  color: #ecc878;
+  opacity: 0;
+  animation: gnfc-in 0.3s 1.35s forwards;
+}
+
+.gnfc-hello {
+  max-width: 320px;
+  font-family: "Iowan Old Style", "Baskerville", "Palatino Linotype", Georgia, serif;
+  font-size: 22px;
+  line-height: 1.3;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: gnfc-rise 0.5s 1.6s ease-out forwards;
+}
+
+.gnfc-hello small {
+  display: block;
+  margin-top: 8px;
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #a99e88;
+}
+
+/* Barra inferior: WhatsApp del atelier (+ insignia NFC cuando aplica). */
+.gnfc-bar {
+  position: fixed;
+  left: 50%;
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: calc(100% - 32px);
+  max-width: 460px;
+  padding: 8px 8px 8px 16px;
+  border: 1px solid rgba(200, 161, 78, 0.35);
+  border-radius: 999px;
+  background: rgba(13, 9, 7, 0.88);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  transform: translate(-50%, 140%);
+  animation: gnfc-bar-in 0.5s 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.gnfc-overlay ~ .gnfc-bar {
+  animation-delay: 3.1s;
+}
+
+.gnfc-badge {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #ecc878;
+}
+
+.gnfc-wa {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: #c8a14e;
+  color: #070504;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.gnfc-wa:hover {
+  background: #ecc878;
+}
+
+.gnfc-wa svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Deja espacio para la barra al final de la página. */
+body.gnfc-has-bar {
+  padding-bottom: 88px;
+}
+
+@keyframes gnfc-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes gnfc-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes gnfc-fade {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes gnfc-rise {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes gnfc-pulse {
+  0% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.6);
+  }
+}
+
+@keyframes gnfc-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes gnfc-bar-in {
+  to {
+    transform: translate(-50%, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gnfc-overlay {
+    display: none;
+  }
+  .gnfc-bar,
+  .gnfc-overlay ~ .gnfc-bar {
+    animation: none;
+    transform: translate(-50%, 0);
+  }
+}
