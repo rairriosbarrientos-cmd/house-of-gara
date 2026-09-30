@@ -1,2 +1,2 @@
-:HL["/_next/static/chunks/277pthqw82z2e.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"productos","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"bolsa-candado-dorado","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"ekAusYaOWuyiQw3hgVlWj"}
+:HL["/_next/static/chunks/09tp0mgcv2i5b.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"productos","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"bolsa-candado-dorado","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"mRIMy_z7S3YV0KcthhtMV"}
