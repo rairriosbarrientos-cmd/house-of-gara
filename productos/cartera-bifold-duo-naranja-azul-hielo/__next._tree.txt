@@ -1,2 +1,2 @@
-:HL["/_next/static/chunks/09tp0mgcv2i5b.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"productos","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"cartera-bifold-duo-naranja-azul-hielo","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"mRIMy_z7S3YV0KcthhtMV"}
+:HL["/_next/static/chunks/1hnbb_k-4k5ad.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"productos","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"cartera-bifold-duo-naranja-azul-hielo","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"mLa9HLkQg4UnL0NHHg2vb"}
