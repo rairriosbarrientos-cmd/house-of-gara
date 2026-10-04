@@ -1,2 +1,2 @@
-:HL["/_next/static/chunks/3k59l_83r5jh3.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"productos","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"asterion-gara","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"9MabIwG5evgxiArMB8hum"}
+:HL["/_next/static/chunks/3gnzxjf7bf_y7.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"productos","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"asterion-gara","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"OyTm30jWhZQkHo0ChufFM"}
