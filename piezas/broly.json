@@ -1,0 +1,50 @@
+{
+  "plantilla": "majin-boo",
+  "propietario": "Disponible",
+  "saludo": "futuro dueño",
+  "fecha": "2 de noviembre de 2026",
+  "disponible": true,
+  "margenRecorte": {
+    "arriba": 0.2,
+    "izquierda": 0.06,
+    "derecha": 0.06
+  },
+  "slug": "broly",
+  "nombre": "Broly",
+  "numero": "000145",
+  "codigo": "GA-EL-26-000145",
+  "historia": "Broly nace de la fuerza legendaria que no necesita anunciarse. Su piel mostaza, de tono dorado y natural, evoca el aura de un poder que despierta poco a poco, mientras el broche de latón sella esa energía en su interior. Su forma envolvente y robusta fue pensada para proteger lo que te permite ver el mundo: tus lentes.",
+  "descripcion": "Con el tiempo, el tono mostaza se irá dorando y oscureciendo, revelando la historia de cada día a tu lado. Elaborado a mano en GARA, Broly es un ejemplar único para quien guarda una fuerza legendaria bajo una apariencia tranquila. Sereno por fuera. Legendario por dentro.",
+  "color": "Mostaza dorado natural",
+  "materiales": [
+    "Fine full-grain cowhide",
+    "Tono mostaza natural",
+    "Solapa curva envolvente",
+    "Broche de latón",
+    "Costura a mano tono miel",
+    "Grabado GARA"
+  ],
+  "craftNote": "Pieza real fotografiada: frente y detalles de solapa y costura.",
+  "accent": "#c9a227",
+  "swatch": "miel",
+  "subtitulo": "Estuche para lentes GARA · Ejemplar único",
+  "subtituloCertificado": "ESTUCHE PARA LENTES GARA / EJEMPLAR ÚNICO",
+  "categoria": {
+    "clave": "accesorio",
+    "etiqueta": "Accesorio",
+    "etiquetaPlantilla": "Tarjetero"
+  },
+  "extra": [
+    [
+      "No lo sobrecargues de tarjetas para que conserve su forma.",
+      "Guarda los lentes limpios para que el interior se conserve."
+    ]
+  ],
+  "fotos": [
+    "broly/foto1.png",
+    "broly/foto2.png",
+    "broly/foto3.png"
+  ],
+  "recorte": "broly/recorte.png",
+  "certificado": "broly/certificado.pdf"
+}

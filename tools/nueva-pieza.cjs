@@ -71,6 +71,26 @@ if (cfg.materiales.length !== tpl.materials.length)
 const articulo = (n) => (/^(Ing|Lic|Dr|Arq|Mtro|Sr)\.? /.test(n) ? 'el ' : /^(Dra|Mtra|Sra|Lica)\.? /.test(n) ? 'la ' : '');
 const pairs = [];
 const add = (a, b) => { if (a && a !== b) pairs.push([a, b]); };
+// Pieza disponible (aún sin dueño): textos de venta en lugar de los de propietario.
+if (cfg.disponible) {
+  add(`propiedad de ${tplOwner}.`, 'ejemplar único disponible para su primer dueño.');
+  add(`a nombre de ${tplOwner}.`, 'lista para registrarse a nombre de su primer dueño.');
+  add(`Pieza registrada para ${articulo(tplOwner)}${tplOwner}.`, 'Esta pieza espera a su primer dueño.');
+  add('. Esta pieza es tuya y está registrada en el atelier.', '. Esta pieza está registrada en el atelier y espera a su primer dueño.');
+  add('Esta pieza es tuya.', 'Esta pieza puede ser tuya.');
+  add(`Mi ${tpl.name} de GARA: pieza auténtica, hecha a mano y registrada a mi nombre.`, `${tpl.name} de GARA: pieza auténtica, hecha a mano y registrada en el Archivo GARA.`);
+  add('tengo%20la%20pieza%20', 'me%20interesa%20la%20pieza%20');
+  add('Contactar al atelier', 'La quiero · WhatsApp');
+}
+// Cambio de categoría (p. ej. plantilla de tarjetero para una cartera o un estuche).
+if (cfg.subtitulo) add(tpl.subtitle, cfg.subtitulo);
+if (cfg.subtituloCertificado) add(tpl.certificateSubtitle, cfg.subtituloCertificado);
+if (cfg.categoria) {
+  add(`"category":"${tpl.category}"`, `"category":"${cfg.categoria.clave}"`);
+  add(`\\"category\\":\\"${tpl.category}\\"`, `\\"category\\":\\"${cfg.categoria.clave}\\"`);
+  add(cfg.categoria.etiquetaPlantilla, cfg.categoria.etiqueta);
+}
+for (const [a, b] of cfg.extra || []) add(a, b);
 add(tpl.story, cfg.historia);
 add(tplDesc, cfg.descripcion);
 tpl.materials.forEach((m, i) => add(m, `@@MAT${i}@@`));
@@ -194,10 +214,10 @@ function catalogo() {
 // ---------- 6. Inicio ----------
 function inicio() {
   const ultimo = productos[productos.length - 1].slug;
-  const siguiente = productos[productos.indexOf(tpl) + 1].slug;
+  const sig = productos[productos.indexOf(tpl) + 1];
   const insertar = (t, q) => {
     const a = t.indexOf(`{${q}id${q}:${q}${tpl.slug}${q}`);
-    const b = t.indexOf(`,{${q}id${q}:${q}${siguiente}${q}`, a);
+    const b = sig ? t.indexOf(`,{${q}id${q}:${q}${sig.slug}${q}`, a) : t.indexOf(']}]', a);
     const z = t.indexOf(`{${q}id${q}:${q}${ultimo}${q}`);
     const e = t.indexOf(']}]', z);
     if (a < 0 || b < 0 || z < 0 || e < 0) fail('No encontré la lista de productos del inicio');
@@ -269,7 +289,7 @@ async function compartir() {
   const p = await b.newPage({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: 2 });
   await p.goto(`${base}/verify/${serial}/`, { waitUntil: 'networkidle' });
   await p.waitForTimeout(6000);
-  await p.evaluate(({ serial, owner }) => {
+  await p.evaluate(({ serial, owner, label }) => {
     const card = document.querySelector('.owner-flip').cloneNode(true);
     card.querySelectorAll('.owner-back').forEach((e) => e.remove());
     card.style.cssText = 'width:340px;transform:scale(1.9) rotate(-1.5deg);transform-origin:center center;';
@@ -281,13 +301,13 @@ async function compartir() {
  <img src="/brand/gara-lockup-official.png" style="position:relative;margin-top:128px;width:380px">
  <p class="font-data" style="position:relative;margin-top:44px;color:#d9b45f;font-size:22px;letter-spacing:.32em;text-transform:uppercase">Pieza auténtica · Atelier Registry</p>
  <div id="slot" style="position:relative;margin-top:300px;width:340px;height:476px;filter:drop-shadow(0 40px 60px rgba(0,0,0,.8))"></div>
- <p class="font-data" style="position:relative;margin-top:330px;color:#a49a88;font-size:19px;letter-spacing:.34em;text-transform:uppercase">Propietario</p>
+ <p class="font-data" style="position:relative;margin-top:330px;color:#a49a88;font-size:19px;letter-spacing:.34em;text-transform:uppercase">${label}</p>
  <p class="font-display" style="position:relative;margin-top:14px;color:#efe6d4;font-size:58px;line-height:1.1">${owner}</p>
  <p class="font-display" style="position:relative;margin-top:14px;color:#d9b45f;font-size:30px;font-style:italic">Hecha a mano en México</p>
  <div class="font-data" style="position:relative;margin-top:44px;padding:18px 36px;border:1px solid rgba(200,161,78,.4);border-radius:999px;color:#efe6d4;font-size:24px;letter-spacing:.06em;background:rgba(0,0,0,.35)">garaleathergoods.mx/verify/${serial}</div>`;
     document.body.appendChild(s);
     s.querySelector('#slot').appendChild(card);
-  }, { serial, owner: cfg.propietario });
+  }, { serial, owner: cfg.disponible ? 'Busca a su primer dueño' : cfg.propietario, label: cfg.disponible ? 'Ejemplar único' : 'Propietario' });
   await p.waitForTimeout(1500);
   const share = S('share', `${code.toLowerCase()}.jpg`);
   await p.screenshot({ path: share, type: 'jpeg', quality: 86, clip: { x: 0, y: 0, width: 1080, height: 1920 } });

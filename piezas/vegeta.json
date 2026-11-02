@@ -1,0 +1,50 @@
+{
+  "plantilla": "majin-boo",
+  "propietario": "Disponible",
+  "saludo": "futuro dueño",
+  "fecha": "2 de noviembre de 2026",
+  "disponible": true,
+  "margenRecorte": {
+    "arriba": 0.2,
+    "izquierda": 0.06,
+    "derecha": 0.06
+  },
+  "slug": "vegeta",
+  "nombre": "Vegeta",
+  "numero": "000144",
+  "codigo": "GA-CB-26-000144",
+  "historia": "Vegeta nace del orgullo de quien no acepta ser segundo. Su piel coñac, encendida por vetas de fuego, guarda el carácter del príncipe: disciplina, precisión y una determinación que no se dobla. El clip metálico al centro sostiene lo esencial con firmeza, mientras sus ranuras ordenan cada tarjeta con la exigencia de quien entrena para ser el mejor.",
+  "descripcion": "Su pátina se volverá más profunda con cada día de uso, como el carácter que se forja en cada batalla. Elaborada a mano en GARA, Vegeta es un ejemplar único para quien lleva su orgullo con elegancia y nunca deja de exigirse más. Disciplina por fuera. Orgullo por dentro.",
+  "color": "Coñac con vetas de fuego",
+  "materiales": [
+    "Fine full-grain cowhide",
+    "Pátina coñac con vetas encendidas",
+    "Clip metálico para billetes",
+    "Múltiples ranuras para tarjetas",
+    "Costura a mano tono miel",
+    "Grabado GARA"
+  ],
+  "craftNote": "Pieza real fotografiada: reverso, abierta y detalle del clip.",
+  "accent": "#c2551b",
+  "swatch": "cognac",
+  "subtitulo": "Cartera con clip GARA · Ejemplar único",
+  "subtituloCertificado": "CARTERA CON CLIP GARA / EJEMPLAR ÚNICO",
+  "categoria": {
+    "clave": "cartera",
+    "etiqueta": "Cartera",
+    "etiquetaPlantilla": "Tarjetero"
+  },
+  "extra": [
+    [
+      "No lo sobrecargues de tarjetas para que conserve su forma.",
+      "No la sobrecargues de tarjetas para que conserve su forma."
+    ]
+  ],
+  "fotos": [
+    "vegeta/foto1.png",
+    "vegeta/foto2.png",
+    "vegeta/foto3.png"
+  ],
+  "recorte": "vegeta/recorte.png",
+  "certificado": "vegeta/certificado.pdf"
+}

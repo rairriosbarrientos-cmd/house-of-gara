@@ -1,0 +1,50 @@
+{
+  "plantilla": "majin-boo",
+  "propietario": "Disponible",
+  "saludo": "futuro dueño",
+  "fecha": "2 de noviembre de 2026",
+  "disponible": true,
+  "margenRecorte": {
+    "arriba": 0.2,
+    "izquierda": 0.06,
+    "derecha": 0.06
+  },
+  "slug": "goku",
+  "nombre": "Goku",
+  "numero": "000143",
+  "codigo": "GA-CB-26-000143",
+  "historia": "Goku nace de la idea de que la verdadera fuerza no se presume: se entrena. Su piel naranja encendida, con vetas que se oscurecen como marcas de batalla, recuerda el espíritu de quien siempre busca superarse. A primera vista es una cartera sencilla; al abrirla, su solapa se despliega y revela un orden pensado para el día a día, como quien guarda su verdadero poder para el momento justo.",
+  "descripcion": "Cada roce, cada viaje y cada día de uso irán despertando nuevos tonos en la piel: la pátina es su forma de entrenar y transformarse junto a quien la lleve. Elaborada a mano en GARA, Goku es un ejemplar único para quien sabe que siempre hay un nivel más. Humilde por fuera. Imparable por dentro.",
+  "color": "Naranja encendido con vetas oscuras",
+  "materiales": [
+    "Fine full-grain cowhide",
+    "Pátina naranja con vetas profundas",
+    "Solapa envolvente",
+    "Ranura frontal de acceso rápido",
+    "Costura a mano tono naranja",
+    "Grabado GARA"
+  ],
+  "craftNote": "Pieza real fotografiada: cerrada, abierta y reverso.",
+  "accent": "#e0701f",
+  "swatch": "naranja",
+  "subtitulo": "Cartera GARA · Ejemplar único",
+  "subtituloCertificado": "CARTERA GARA / EJEMPLAR ÚNICO",
+  "categoria": {
+    "clave": "cartera",
+    "etiqueta": "Cartera",
+    "etiquetaPlantilla": "Tarjetero"
+  },
+  "extra": [
+    [
+      "No lo sobrecargues de tarjetas para que conserve su forma.",
+      "No la sobrecargues para que conserve su forma."
+    ]
+  ],
+  "fotos": [
+    "goku/foto1.png",
+    "goku/foto2.png",
+    "goku/foto3.png"
+  ],
+  "recorte": "goku/recorte.png",
+  "certificado": "goku/certificado.pdf"
+}

@@ -1,0 +1,16 @@
+{
+  "base": "tools/certificado-base.png",
+  "foto": "entradas/broly/foto1.png",
+  "nombre": "BROLY",
+  "subtitulo": "ESTUCHE PARA LENTES GARA / EJEMPLAR ÚNICO",
+  "codigo": "GA-EL-26-000145",
+  "propietario": "Por registrar",
+  "fecha": "2 de noviembre de 2026",
+  "detalles": [
+    "Tono mostaza natural · Solapa curva envolvente",
+    "Broche de latón · Costura a mano tono miel · Grabado GARA"
+  ],
+  "url": "https://garaleathergoods.mx/verify/gara-000145/",
+  "titulo": "Certificado GARA — Broly · GA-EL-26-000145",
+  "salida": "entradas/broly/certificado.pdf"
+}

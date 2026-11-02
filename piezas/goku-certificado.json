@@ -1,0 +1,16 @@
+{
+  "base": "tools/certificado-base.png",
+  "foto": "entradas/goku/foto1.png",
+  "nombre": "GOKU",
+  "subtitulo": "CARTERA GARA / EJEMPLAR ÚNICO",
+  "codigo": "GA-CB-26-000143",
+  "propietario": "Por registrar",
+  "fecha": "2 de noviembre de 2026",
+  "detalles": [
+    "Pátina naranja con vetas profundas · Solapa envolvente",
+    "Ranura de acceso rápido · Costura naranja · Grabado GARA"
+  ],
+  "url": "https://garaleathergoods.mx/verify/gara-000143/",
+  "titulo": "Certificado GARA — Goku · GA-CB-26-000143",
+  "salida": "entradas/goku/certificado.pdf"
+}

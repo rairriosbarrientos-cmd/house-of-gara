@@ -1,0 +1,16 @@
+{
+  "base": "tools/certificado-base.png",
+  "foto": "entradas/vegeta/foto1.png",
+  "nombre": "VEGETA",
+  "subtitulo": "CARTERA CON CLIP GARA / EJEMPLAR ÚNICO",
+  "codigo": "GA-CB-26-000144",
+  "propietario": "Por registrar",
+  "fecha": "2 de noviembre de 2026",
+  "detalles": [
+    "Pátina coñac con vetas encendidas · Clip para billetes",
+    "Múltiples ranuras · Costura tono miel · Grabado GARA"
+  ],
+  "url": "https://garaleathergoods.mx/verify/gara-000144/",
+  "titulo": "Certificado GARA — Vegeta · GA-CB-26-000144",
+  "salida": "entradas/vegeta/certificado.pdf"
+}
