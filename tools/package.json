@@ -1,0 +1,10 @@
+{
+  "name": "gara-tools",
+  "private": true,
+  "description": "Herramientas para dar de alta piezas en garaleathergoods.mx",
+  "dependencies": {
+    "pdf-lib": "^1.17.1",
+    "qrcode": "^1.5.4",
+    "sharp": "0.33.5"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "plantilla": "axioma",
+  "slug": "majin-boo",
+  "nombre": "Majin Boo",
+  "numero": "000142",
+  "codigo": "GA-TJ-26-000142",
+  "propietario": "Rogel Ríos",
+  "saludo": "Rogel",
+  "fecha": "1 de noviembre de 2026",
+  "historia": "Majin Boo nació del contraste entre la calma y el poder. Su cuerpo oscuro y sobrio guarda una personalidad inesperada, mientras sus bordes envejecidos en tono dorado y la costura verde revelan la energía que corre por toda la pieza. Como el personaje que inspira su nombre, puede parecer sencillo a primera vista, pero detrás de su forma compacta existe fuerza, carácter y una identidad imposible de confundir.",
+  "descripcion": "Sus marcas naturales no son imperfecciones: son rastros de transformación que harán que la pieza cambie y envejezca junto a su propietario. Elaborado a mano para Rogel Ríos, Majin Boo es un ejemplar único creado para proteger lo esencial sin cargar con lo innecesario. Oscuro por fuera. Poderoso por dentro.",
+  "color": "Negro con borde dorado envejecido",
+  "materiales": [
+    "Fine full-grain cowhide",
+    "Diseño vertical compacto",
+    "Doble acceso para tarjetas",
+    "Borde envejecido coñac",
+    "Costura verde oliva",
+    "Grabado GARA"
+  ],
+  "craftNote": "Pieza real fotografiada: frente, reverso y de pie.",
+  "accent": "#6b7a3a",
+  "swatch": "negro",
+  "fotos": [
+    "entradas/94b9d8be-image.png",
+    "entradas/e6e31ddd-image.png",
+    "entradas/51ca1635-image.png"
+  ],
+  "recorte": "entradas/fdc464f9-image.png",
+  "margenRecorte": {
+    "arriba": 0.24,
+    "izquierda": 0.02,
+    "derecha": 0.3
+  },
+  "certificado": "entradas/certificado.pdf"
+}
