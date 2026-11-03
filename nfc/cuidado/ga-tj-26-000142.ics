@@ -1,0 +1,25 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//GARA Atelier//Cuidado//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:cuidado-ga-tj-26-000142@garaleathergoods.mx
+DTSTAMP:20261103T040247Z
+DTSTART;VALUE=DATE:20270201
+DTEND;VALUE=DATE:20270202
+RRULE:FREQ=MONTHLY;INTERVAL=3;COUNT=12
+SUMMARY:Cuidado GARA · Hidrata tu Majin Boo
+DESCRIPTION:Hora de consentir tu Majin Boo:\n1. Límpiala con un paño sec
+ o o apenas húmedo.\n2. Aplica un poco de acondicionador para piel y deja
+  que absorba.\n3. Guárdala lejos del sol directo y la humedad.\n\nTu cer
+ tificado: https://garaleathergoods.mx/verify/gara-000142/
+URL:https://garaleathergoods.mx/verify/gara-000142/
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Hidrata tu Majin Boo GARA
+TRIGGER:PT10H
+END:VALARM
+END:VEVENT
+END:VCALENDAR

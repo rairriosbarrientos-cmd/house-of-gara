@@ -1,0 +1,25 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//GARA Atelier//Cuidado//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:cuidado-ga-el-26-000141@garaleathergoods.mx
+DTSTAMP:20261103T040247Z
+DTSTART;VALUE=DATE:20270125
+DTEND;VALUE=DATE:20270126
+RRULE:FREQ=MONTHLY;INTERVAL=3;COUNT=12
+SUMMARY:Cuidado GARA · Hidrata tu Azimut
+DESCRIPTION:Hora de consentir tu Azimut:\n1. Límpiala con un paño seco o
+  apenas húmedo.\n2. Aplica un poco de acondicionador para piel y deja qu
+ e absorba.\n3. Guárdala lejos del sol directo y la humedad.\n\nTu certif
+ icado: https://garaleathergoods.mx/verify/gara-000141/
+URL:https://garaleathergoods.mx/verify/gara-000141/
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Hidrata tu Azimut GARA
+TRIGGER:PT10H
+END:VALARM
+END:VEVENT
+END:VCALENDAR

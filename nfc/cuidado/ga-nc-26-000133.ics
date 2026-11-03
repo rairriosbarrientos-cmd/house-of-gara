@@ -1,0 +1,25 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//GARA Atelier//Cuidado//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:cuidado-ga-nc-26-000133@garaleathergoods.mx
+DTSTAMP:20261103T040247Z
+DTSTART;VALUE=DATE:20270104
+DTEND;VALUE=DATE:20270105
+RRULE:FREQ=MONTHLY;INTERVAL=3;COUNT=12
+SUMMARY:Cuidado GARA · Hidrata tu Siroco
+DESCRIPTION:Hora de consentir tu Siroco:\n1. Límpiala con un paño seco o
+  apenas húmedo.\n2. Aplica un poco de acondicionador para piel y deja qu
+ e absorba.\n3. Guárdala lejos del sol directo y la humedad.\n\nTu certif
+ icado: https://garaleathergoods.mx/verify/gara-000133/
+URL:https://garaleathergoods.mx/verify/gara-000133/
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Hidrata tu Siroco GARA
+TRIGGER:PT10H
+END:VALARM
+END:VEVENT
+END:VCALENDAR

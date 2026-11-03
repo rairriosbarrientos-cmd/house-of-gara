@@ -1,0 +1,25 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//GARA Atelier//Cuidado//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:cuidado-ga-cb-26-000143@garaleathergoods.mx
+DTSTAMP:20261103T040247Z
+DTSTART;VALUE=DATE:20270202
+DTEND;VALUE=DATE:20270203
+RRULE:FREQ=MONTHLY;INTERVAL=3;COUNT=12
+SUMMARY:Cuidado GARA · Hidrata tu Goku
+DESCRIPTION:Hora de consentir tu Goku:\n1. Límpiala con un paño seco o a
+ penas húmedo.\n2. Aplica un poco de acondicionador para piel y deja que 
+ absorba.\n3. Guárdala lejos del sol directo y la humedad.\n\nTu certific
+ ado: https://garaleathergoods.mx/verify/gara-000143/
+URL:https://garaleathergoods.mx/verify/gara-000143/
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Hidrata tu Goku GARA
+TRIGGER:PT10H
+END:VALARM
+END:VEVENT
+END:VCALENDAR

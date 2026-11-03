@@ -1,0 +1,25 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//GARA Atelier//Cuidado//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:cuidado-ga-tp-26-000128@garaleathergoods.mx
+DTSTAMP:20261103T040247Z
+DTSTART;VALUE=DATE:20261009
+DTEND;VALUE=DATE:20261010
+RRULE:FREQ=MONTHLY;INTERVAL=3;COUNT=12
+SUMMARY:Cuidado GARA · Hidrata tu Tarjetero Animal Print
+DESCRIPTION:Hora de consentir tu Tarjetero Animal Print:\n1. Límpiala con
+  un paño seco o apenas húmedo.\n2. Aplica un poco de acondicionador par
+ a piel y deja que absorba.\n3. Guárdala lejos del sol directo y la humed
+ ad.\n\nTu certificado: https://garaleathergoods.mx/verify/gara-000128/
+URL:https://garaleathergoods.mx/verify/gara-000128/
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Hidrata tu Tarjetero Animal Print GARA
+TRIGGER:PT10H
+END:VALARM
+END:VEVENT
+END:VCALENDAR
