@@ -1,7 +1,8 @@
 /*
  * GARA — experiencia NFC (mejora las páginas /verify/* sin tocar el build de Next.js)
  *  1. Giroscopio: en iPhone, el primer toque en la página activa "Moverla con el celular".
- *  2. Apertura personalizada: la primera vez que se abre la página NFC de una pieza.
+ *  2. Apertura personalizada: la primera vez que se abre la página de una pieza (NFC o QR).
+ *     Para verla otra vez: agregar ?bienvenida al link.
  *  3. Recordatorio de cuidado: botón que agrega avisos al calendario (/nfc/cuidado/<codigo>.ics).
  */
 (function () {
@@ -92,10 +93,11 @@
   function apertura() {
     var d = datos();
     var clave = 'gara-apertura-' + (d.codigo || location.pathname);
-    if (!esNFC || vista(clave) || !d.codigo) return;
+    var forzar = /[?&]bienvenida\b/.test(location.search);
+    if (!d.codigo || (vista(clave) && !forzar)) return;
     var esperado = 0;
     (function esperar() {
-      if (!introTerminada() && esperado < 9000) { esperado += 200; return setTimeout(esperar, 200); }
+      if (!introTerminada() && esperado < 5000) { esperado += 200; return setTimeout(esperar, 200); }
       mostrar(d, clave);
     })();
   }
@@ -173,7 +175,7 @@
   }
   var espera = 0;
   (function listo() {
-    if (!hidratado() && espera < 12000) { espera += 150; return setTimeout(listo, 150); }
+    if (!hidratado() && espera < 6000) { espera += 150; return setTimeout(listo, 150); }
     setTimeout(iniciar, 400);
   })();
 })();
