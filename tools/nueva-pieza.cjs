@@ -339,6 +339,8 @@ async function compartir() {
   catalogo();
   inicio();
   sitemap();
+  require('child_process').execFileSync('python3', [path.join(__dirname, 'cuidado-ics.py'), sitio], { stdio: 'ignore' });
+  ok('Recordatorio de cuidado (nfc/cuidado/' + code.toLowerCase() + '.ics)');
   if (!sinImagenes) await compartir();
   console.log(`\nListo. NFC: https://garaleathergoods.mx/verify/${serial}-nfc`);
 })().catch((e) => fail(e.stack || e));
