@@ -1,0 +1,49 @@
+{
+  "plantilla": "majin-boo",
+  "slug": "espinazo",
+  "nombre": "Espinazo",
+  "numero": "000146",
+  "codigo": "GA-CB-26-000146",
+  "propietario": "Ing. Isaac Moreno",
+  "saludo": "Ing. Isaac",
+  "fecha": "3 de noviembre de 2026",
+  "historia": "Espinazo nace en la Sierra Madre Occidental, donde el camino de Durango al mar tuvo que vencer al Espinazo del Diablo: una cresta de roca que parecía imposible de cruzar hasta que la ingeniería la convirtió en ruta. Su piel rojo vino, atravesada por vetas encendidas, recuerda las paredes de la sierra al caer la tarde; por dentro, el verde olivo guarda el color de sus pinos, y la costura verde recorre la pieza como un trazo hecho a mano sobre el plano.",
+  "descripcion": "Cada bolsillo fue pensado como una obra: medido, cortado y unido para resistir el paso de los años sin perder su forma. Elaborada a mano para el Ing. Isaac Moreno, Espinazo es un ejemplar único para quien sabe que no hay terreno imposible cuando se construye con precisión. Firme por fuera. Ingeniería por dentro.",
+  "color": "Rojo vino con vetas encendidas",
+  "materiales": [
+    "Fine full-grain cowhide",
+    "Pátina rojo vino con vetas encendidas",
+    "Bolsillos cruzados verde olivo",
+    "Solapa con interior rojo natural",
+    "Costura a mano en verde",
+    "Grabado personalizado SAK"
+  ],
+  "craftNote": "Pieza real fotografiada: frente con grabado SAK, abierta y reverso.",
+  "accent": "#b3262e",
+  "swatch": "cognac",
+  "subtitulo": "Cartera GARA · Ejemplar único",
+  "subtituloCertificado": "CARTERA GARA / EJEMPLAR ÚNICO",
+  "categoria": {
+    "clave": "cartera",
+    "etiqueta": "Cartera",
+    "etiquetaPlantilla": "Tarjetero"
+  },
+  "extra": [
+    [
+      "No lo sobrecargues de tarjetas para que conserve su forma.",
+      "No la sobrecargues para que conserve su forma."
+    ]
+  ],
+  "fotos": [
+    "entradas/espinazo/foto1.png",
+    "entradas/espinazo/foto2.png",
+    "entradas/espinazo/foto3.png"
+  ],
+  "recorte": "entradas/espinazo/recorte.png",
+  "certificado": "entradas/espinazo/certificado.pdf",
+  "margenRecorte": {
+    "arriba": 0.2,
+    "izquierda": 0.06,
+    "derecha": 0.06
+  }
+}

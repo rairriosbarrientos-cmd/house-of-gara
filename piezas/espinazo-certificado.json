@@ -1,0 +1,17 @@
+{
+  "base": "tools/certificado-base.png",
+  "foto": "entradas/espinazo/foto1.png",
+  "nombre": "ESPINAZO",
+  "subtitulo": "CARTERA GARA / EJEMPLAR ÚNICO",
+  "codigo": "GA-CB-26-000146",
+  "propietario": "Ing. Isaac Moreno",
+  "fecha": "3 de noviembre de 2026",
+  "detalles": [
+    "Pátina rojo vino con vetas encendidas · Bolsillos cruzados",
+    "Interior rojo natural · Costura verde · Grabado SAK"
+  ],
+  "firma": "Ing. Isaac Moreno",
+  "url": "https://garaleathergoods.mx/verify/gara-000146/",
+  "titulo": "Certificado GARA — Espinazo · GA-CB-26-000146",
+  "salida": "entradas/espinazo/certificado.pdf"
+}
