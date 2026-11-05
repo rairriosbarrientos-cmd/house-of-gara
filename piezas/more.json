@@ -1,0 +1,49 @@
+{
+  "plantilla": "majin-boo",
+  "slug": "more",
+  "nombre": "More",
+  "numero": "000147",
+  "codigo": "GA-NC-26-000147",
+  "propietario": "Ana Laura Salazar Orozco",
+  "saludo": "Ana Laura",
+  "fecha": "5 de noviembre de 2026",
+  "historia": "More nace de una palabra que solo existe entre dos personas: la forma en que él la llama cuando nadie más escucha. Su piel color canela pasión, cálida como una tarde que no quiere terminar, guarda en sus vetas oscuras la huella de cada abrazo, de cada viaje juntos y de cada regreso a casa. No fue pensado como un regalo cualquiera, sino como una manera de decirle, sin palabras, que la eligió y la sigue eligiendo todos los días.",
+  "descripcion": "Con el tiempo, su piel se volverá más profunda y más suave, igual que el amor que la inspiró: no se desgasta, madura. Elaborado a mano para Ana Laura Salazar Orozco, More es un ejemplar único hecho para acompañarla en cada viaje y recordarle, cada vez que lo abra, que alguien pensó en ella puntada por puntada. Hecho con amor por fuera. Lleno de amor por dentro.",
+  "color": "Canela pasión con vetas oscuras",
+  "materiales": [
+    "Fine full-grain cowhide",
+    "Piel canela pasión con vetas oscuras",
+    "Forma estructurada tipo caja",
+    "Jalador lateral con grabado GARA",
+    "Costura a mano en verde",
+    "Grabado GARA"
+  ],
+  "craftNote": "Pieza real fotografiada: frente, detalle del jalador y textura de la piel.",
+  "accent": "#b8713a",
+  "swatch": "cognac",
+  "subtitulo": "Neceser GARA · Ejemplar único",
+  "subtituloCertificado": "NECESER GARA / EJEMPLAR ÚNICO",
+  "categoria": {
+    "clave": "accesorio",
+    "etiqueta": "Accesorio",
+    "etiquetaPlantilla": "Tarjetero"
+  },
+  "extra": [
+    [
+      "No lo sobrecargues de tarjetas para que conserve su forma.",
+      "Vacíalo y déjalo airear de vez en cuando para que conserve su forma."
+    ]
+  ],
+  "fotos": [
+    "entradas/more/foto1.png",
+    "entradas/more/foto2.png",
+    "entradas/more/foto3.png"
+  ],
+  "recorte": "entradas/more/recorte.png",
+  "certificado": "entradas/more/certificado.pdf",
+  "margenRecorte": {
+    "arriba": 0.32,
+    "izquierda": 0.04,
+    "derecha": 0.04
+  }
+}

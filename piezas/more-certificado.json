@@ -1,0 +1,18 @@
+{
+  "base": "tools/certificado-base.png",
+  "foto": "entradas/more/foto1.png",
+  "fotoPos": "centre",
+  "nombre": "MORE",
+  "subtitulo": "NECESER GARA / EJEMPLAR ÚNICO",
+  "codigo": "GA-NC-26-000147",
+  "propietario": "Ana Laura Salazar Orozco",
+  "fecha": "5 de noviembre de 2026",
+  "detalles": [
+    "Piel canela pasión con vetas oscuras · Forma tipo caja",
+    "Jalador lateral · Costura verde · Grabado GARA"
+  ],
+  "firma": "Ana Laura Salazar Orozco",
+  "url": "https://garaleathergoods.mx/verify/gara-000147/",
+  "titulo": "Certificado GARA — More · GA-NC-26-000147",
+  "salida": "entradas/more/certificado.pdf"
+}
