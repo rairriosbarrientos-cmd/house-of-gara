@@ -128,6 +128,7 @@
     var cerrar = function (ev) {
       if (!listo) return;
       activarMovimiento(ev); // el toque que cierra también activa el giroscopio en iPhone
+      if (reproductor && reproductor.alAbrir) { try { reproductor.audio.play().catch(function () {}); } catch (e) {} }
       o.classList.add('gx-out');
       setTimeout(function () { if (o.parentNode) o.parentNode.removeChild(o); }, 750);
       o.removeEventListener('click', cerrar);
@@ -158,9 +159,44 @@
     }).catch(function () {});
   }
 
+
+  // ---------- 4. mensaje o canción agregada (/mensajes/<codigo>.mp3 + /mensajes/<codigo>.json) ----------
+  var reproductor = null;
+  function mensaje() {
+    var d = datos();
+    if (!d.codigo || document.querySelector('.owner-message')) return Promise.resolve();
+    var base = '/mensajes/' + d.codigo.toLowerCase();
+    return fetch(base + '.json').then(function (r) { return r.ok ? r.json() : null; }).then(function (cfg) {
+      if (!cfg || document.querySelector('.gx-msg-box')) return;
+      var ancla = null, ps = document.querySelectorAll('p');
+      for (var i = 0; i < ps.length; i++) if (/Ejemplar único\s*$/.test(ps[i].textContent) && /max-w-md/.test(ps[i].className)) { ancla = ps[i]; break; }
+      if (!ancla) return;
+      var alturas = [35, 60, 90, 50, 75, 100, 65, 40, 80, 55, 95, 45, 70, 30, 60, 85, 50, 70, 40, 90, 60, 35];
+      var barras = alturas.map(function (h, k) { return '<span class="owner-message-bar w-[3px] rounded-full bg-parchment/25" style="height:' + h + '%;animation-delay:' + (k % 6) * 0.11 + 's"></span>'; }).join('');
+      var box = document.createElement('div');
+      box.className = 'owner-message gx-msg-box mx-auto mt-8 max-w-[340px] rounded-2xl border border-brass/35 bg-ink/60 p-4 text-left';
+      box.innerHTML = '<p class="font-data text-[9px] uppercase tracking-[0.22em] text-brass-bright"></p>' +
+        '<p class="mt-1 text-[13px] text-parchment-dim"></p>' +
+        '<div class="mt-3 flex items-center gap-3"><button type="button" aria-label="Escuchar" class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brass text-ink transition hover:bg-brass-bright"></button>' +
+        '<div aria-hidden="true" class="flex h-9 flex-1 items-center justify-between">' + barras + '</div></div>';
+      box.children[0].textContent = cfg.etiqueta || 'Mensaje para ti';
+      box.children[1].textContent = cfg.texto || ('Para ' + (cfg.para || d.saludo));
+      var btn = box.querySelector('button');
+      var play = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="ml-0.5 h-4 w-4"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5Z"></path></svg>';
+      var pausa = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="h-4 w-4"><rect x="6" y="5" width="4" height="14" rx="1"></rect><rect x="14" y="5" width="4" height="14" rx="1"></rect></svg>';
+      btn.innerHTML = play;
+      var audio = new Audio(base + '.mp3'); audio.preload = 'auto';
+      var pintar = function () { var on = !audio.paused; box.classList.toggle('is-playing', on); btn.innerHTML = on ? pausa : play; btn.setAttribute('aria-label', on ? 'Pausar' : 'Escuchar'); };
+      audio.addEventListener('play', pintar); audio.addEventListener('pause', pintar); audio.addEventListener('ended', pintar);
+      btn.addEventListener('click', function () { if (audio.paused) audio.play().catch(function () {}); else audio.pause(); });
+      ancla.insertAdjacentElement('afterend', box);
+      reproductor = { audio: audio, alAbrir: !!cfg.alAbrir };
+    }).catch(function () {});
+  }
+
   function iniciar() {
     escucharPrimerToque();
-    apertura();
+    mensaje().then(apertura, apertura);
     // la sección de cuidados aparece después de la hidratación; reintento unos segundos
     var n = 0;
     (function intento() { cuidado(); if (!document.querySelector('.gx-cuidado') && ++n < 20) setTimeout(intento, 400); })();
