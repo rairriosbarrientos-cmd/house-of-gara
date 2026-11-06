@@ -23,7 +23,10 @@ const LS_DET=spec.lsDetalles??0;
  ${t(1346,2450,spec.detalles[1]||'','DejaVu Serif',29.6,`letter-spacing="${LS_DET}"`)}
  ${spec.firma?t(1809,3067,spec.firma,'Liberation Serif',45.8,'font-style="italic" text-anchor="middle"'):''}
  </svg>`;
- const png=await sharp(BASE).removeAlpha().composite([...patches,{input:photo,left:270,top:1009},{input:qr,left:2118,top:3043},{input:Buffer.from(svg),left:0,top:0}]).png().toBuffer();
+ const extra=[];
+ if(spec.firmaImg){const fi=await sharp(spec.firmaImg).resize(470,215,{fit:'inside'}).png().toBuffer();const fm=await sharp(fi).metadata();
+  extra.push(rect(1560,2930,500,250));extra.push({input:fi,left:Math.round(1806-fm.width/2),top:Math.round(3176-fm.height)});spec.firma='';}
+ const png=await sharp(BASE).removeAlpha().composite([...patches,{input:photo,left:270,top:1009},{input:qr,left:2118,top:3043},{input:Buffer.from(svg),left:0,top:0},...extra]).png().toBuffer();
  const jpg=await sharp(png).jpeg({quality:90,chromaSubsampling:'4:4:4'}).toBuffer();
  fs.writeFileSync(spec.salida.replace(/\.pdf$/,'-preview.jpg'),jpg);
  const pdf=await PDFDocument.create();
