@@ -1,0 +1,36 @@
+{
+  "plantilla": "espinazo",
+  "slug": "nazas",
+  "nombre": "Nazas",
+  "numero": "000148",
+  "codigo": "GA-CB-26-000148",
+  "propietario": "Ing. Isaac Moreno",
+  "saludo": "Ing. Isaac",
+  "fecha": "7 de noviembre de 2026",
+  "historia": "Nazas nace del río que cruza Durango y que durante siglos corrió libre hasta que la ingeniería aprendió a escucharlo. En El Palmito, una cortina de concreto convirtió su fuerza en agua para todo un valle: obra de hombres que midieron, calcularon y construyeron para que el río diera vida en lugar de llevársela. Su piel café, con reflejos cobrizos como la tierra mojada de sus orillas, guarda esa calma de lo que ha sido bien encauzado.",
+  "descripcion": "Por fuera es sobria y firme; al abrirla, su interior revela bolsillos en diagonal y una media luna de gamuza que recuerda el cauce del río. Segunda pieza de la colección del Ing. Isaac Moreno junto a Espinazo: la sierra y el río, las dos fuerzas de Durango. Elaborada a mano para él, Nazas es un ejemplar único para quien sabe que la fuerza bien dirigida construye. Serena por fuera. Caudal por dentro.",
+  "color": "Café cobrizo envejecido",
+  "materiales": [
+    "Fine full-grain cowhide",
+    "Pátina café cobrizo envejecido",
+    "Bolsillos en diagonal",
+    "Interior media luna en gamuza",
+    "Costura a mano tono miel",
+    "Grabado personalizado SAK"
+  ],
+  "craftNote": "Pieza real fotografiada: frente con grabado SAK, abierta y detalle interior.",
+  "accent": "#a5592a",
+  "swatch": "cafe",
+  "fotos": [
+    "entradas/nazas/foto1.png",
+    "entradas/nazas/foto2.png",
+    "entradas/nazas/foto3.png"
+  ],
+  "recorte": "entradas/nazas/recorte.png",
+  "certificado": "entradas/nazas/certificado.pdf",
+  "margenRecorte": {
+    "arriba": 0.36,
+    "izquierda": 0.16,
+    "derecha": 0.16
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "base": "tools/certificado-base.png",
+  "foto": "entradas/nazas/foto1.png",
+  "nombre": "NAZAS",
+  "subtitulo": "CARTERA GARA / EJEMPLAR ÚNICO",
+  "codigo": "GA-CB-26-000148",
+  "propietario": "Ing. Isaac Moreno",
+  "fecha": "7 de noviembre de 2026",
+  "detalles": [
+    "Pátina café cobrizo envejecido · Bolsillos en diagonal",
+    "Interior en gamuza · Costura tono miel · Grabado SAK"
+  ],
+  "firma": "Ing. Isaac Moreno",
+  "firmaImg": "entradas/espinazo/firma-isaac.png",
+  "url": "https://garaleathergoods.mx/verify/gara-000148/",
+  "titulo": "Certificado GARA — Nazas · GA-CB-26-000148",
+  "salida": "entradas/nazas/certificado.pdf"
+}

@@ -91,8 +91,8 @@ if (cfg.categoria) {
   add(cfg.categoria.etiquetaPlantilla, cfg.categoria.etiqueta);
 }
 for (const [a, b] of cfg.extra || []) add(a, b);
-add(tpl.story, cfg.historia);
-add(tplDesc, cfg.descripcion);
+add(tpl.story, '@@HISTORIA@@');
+add(tplDesc, '@@DESCRIPCION@@');
 tpl.materials.forEach((m, i) => add(m, `@@MAT${i}@@`));
 add(tpl.color, cfg.color);
 tpl.materials.forEach((m, i) => { if (m !== cfg.materiales[i]) pairs.push([`@@MAT${i}@@`, cfg.materiales[i]]); else pairs.push([`@@MAT${i}@@`, m]); });
@@ -112,6 +112,8 @@ if (cfg.swatch) add(`"swatch":"${tpl.swatch}","accent"`, `"swatch":"${cfg.swatch
 add(tplCode, code);
 add(tplCode.toLowerCase(), code.toLowerCase());
 add(tplNum, num);
+// Los textos nuevos entran al final para que ningún reemplazo posterior los toque (p. ej. si mencionan otra pieza).
+pairs.push(['@@HISTORIA@@', cfg.historia], ['@@DESCRIPCION@@', cfg.descripcion]);
 const tr = (s) => pairs.reduce((acc, [a, b]) => acc.split(a).join(b), s);
 
 // Restos que no deben quedar en los archivos nuevos
