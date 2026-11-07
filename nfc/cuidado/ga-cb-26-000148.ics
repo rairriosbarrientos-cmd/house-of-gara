@@ -1,0 +1,25 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//GARA Atelier//Cuidado//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:cuidado-ga-cb-26-000148@garaleathergoods.mx
+DTSTAMP:20261107T123938Z
+DTSTART;VALUE=DATE:20270207
+DTEND;VALUE=DATE:20270208
+RRULE:FREQ=MONTHLY;INTERVAL=3;COUNT=12
+SUMMARY:Cuidado GARA · Hidrata tu Nazas
+DESCRIPTION:Hora de consentir tu Nazas:\n1. Límpiala con un paño seco o 
+ apenas húmedo.\n2. Aplica un poco de acondicionador para piel y deja que
+  absorba.\n3. Guárdala lejos del sol directo y la humedad.\n\nTu certifi
+ cado: https://garaleathergoods.mx/verify/gara-000148/
+URL:https://garaleathergoods.mx/verify/gara-000148/
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Hidrata tu Nazas GARA
+TRIGGER:PT10H
+END:VALARM
+END:VEVENT
+END:VCALENDAR

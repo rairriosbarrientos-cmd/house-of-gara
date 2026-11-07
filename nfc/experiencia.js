@@ -64,6 +64,8 @@
     '.gx-btn{margin-top:38px;border:1px solid #c8a14e88;border-radius:999px;padding:12px 26px;background:#0000;color:#ecc878;font-size:10px;letter-spacing:.26em;text-transform:uppercase;opacity:0;animation:gx-up .8s ease 2.8s forwards;cursor:pointer}' +
     '.gx-skip{position:absolute;bottom:22px;font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:#a49a8880}' +
     '.gx-cuidado{margin-top:16px;display:inline-flex;align-items:center;gap:10px;border:1px solid #c8a14e66;border-radius:999px;padding:11px 18px;color:#ecc878;font-size:10px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;transition:border-color .3s,background .3s}' +
+    '.gx-aviso{margin-top:14px;display:flex;gap:10px;align-items:flex-start;border:1px solid #c8a14e40;border-radius:14px;padding:12px 14px;background:#0a0806;color:#a49a88;font-size:12px;line-height:1.5}' +
+    '.gx-aviso svg{flex:none;color:#ecc878;margin-top:1px}.gx-aviso strong{color:#ecc878;font-weight:500}.gx-aviso p{margin:0}' +
     '.gx-cuidado:hover{border-color:#ecc878;background:#ecc87812}' +
     '@keyframes gx-bloom{60%{opacity:1;transform:scale(1.06) rotate(6deg)}100%{opacity:1;transform:scale(1) rotate(0)}}' +
     '@keyframes gx-up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}' +
@@ -194,12 +196,27 @@
     }).catch(function () {});
   }
 
+
+  // ---------- 5. aviso anti-falsificación junto a la descarga del certificado ----------
+  function aviso() {
+    if (document.querySelector('.gx-aviso')) return;
+    var as = document.querySelectorAll('a'), boton = null;
+    for (var i = 0; i < as.length; i++) if (/Descargar certificado/i.test(as[i].textContent)) { boton = as[i]; break; }
+    if (!boton || !boton.parentElement) return;
+    estilos();
+    var d = document.createElement('div');
+    d.className = 'gx-aviso';
+    d.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+      '<p>Un certificado GARA solo es válido si lo abres en <strong>garaleathergoods.mx/verify</strong>. Un PDF, una foto o una captura no prueban la autenticidad: el registro original vive únicamente aquí.</p>';
+    boton.parentElement.insertAdjacentElement('afterend', d);
+  }
+
   function iniciar() {
     escucharPrimerToque();
     mensaje().then(apertura, apertura);
     // la sección de cuidados aparece después de la hidratación; reintento unos segundos
     var n = 0;
-    (function intento() { cuidado(); if (!document.querySelector('.gx-cuidado') && ++n < 20) setTimeout(intento, 400); })();
+    (function intento() { cuidado(); aviso(); if ((!document.querySelector('.gx-cuidado') || !document.querySelector('.gx-aviso')) && ++n < 20) setTimeout(intento, 400); })();
   }
 
   // Esperar a que React termine de hidratar la página antes de tocar el DOM (si no, React marca error #418).
