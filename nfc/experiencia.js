@@ -100,8 +100,71 @@
     var esperado = 0;
     (function esperar() {
       if (!introTerminada() && esperado < 5000) { esperado += 200; return setTimeout(esperar, 200); }
-      mostrar(d, clave);
+      fetch('/nfc/regalo/' + d.codigo.toLowerCase() + '.json').then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (cfg) { if (cfg && cfg.mensaje) regalo(d, clave, cfg); else mostrar(d, clave); }, function () { mostrar(d, clave); });
     })();
+  }
+
+
+  // ---------- 6. modo regalo: sobre con sello de cera antes de ver la pieza ----------
+  var CSS_REGALO = '' +
+    '.gr-wrap{position:fixed;inset:0;z-index:2147483001;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;' +
+    'background:radial-gradient(60% 45% at 50% 45%,#2a1f12 0%,#0d0a07 58%,#050403 100%);color:#efe6d4;opacity:0;transition:opacity .6s}' +
+    '.gr-wrap.gx-in{opacity:1}.gr-wrap.gx-out{opacity:0;transition:opacity .8s}' +
+    '.gr-top{font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:#d9b45f;opacity:0;animation:gx-up .9s ease .3s forwards}' +
+    '.gr-title{margin-top:10px;font-size:30px;line-height:1.15;opacity:0;animation:gx-up 1s ease .6s forwards}' +
+    '.gr-env{position:relative;margin-top:34px;width:min(78vw,300px);aspect-ratio:3/2;perspective:900px;opacity:0;animation:gx-up 1s ease 1s forwards}' +
+    '.gr-back,.gr-front{position:absolute;inset:0;border-radius:6px}' +
+    '.gr-back{background:linear-gradient(160deg,#e9dcc0,#cdb88f);box-shadow:0 30px 60px -20px #000}' +
+    '.gr-letter{position:absolute;left:6%;right:6%;top:8%;height:84%;border-radius:4px;background:#f6efe1;color:#2a2018;padding:16px 16px 12px;box-shadow:0 6px 18px #0004;' +
+    'transform:translateY(0);transition:transform 1.1s cubic-bezier(.2,.8,.2,1) .55s;display:flex;flex-direction:column;justify-content:center;gap:8px;overflow:hidden}' +
+    '.gr-letter p{margin:0}.gr-msg{font-size:17px;line-height:1.35;font-style:italic}.gr-from{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#8a6a2e}' +
+    '.gr-front{background:linear-gradient(200deg,#e2d3b3,#c9b386);clip-path:polygon(0 0,50% 52%,100% 0,100% 100%,0 100%);z-index:2}' +
+    '.gr-flap{position:absolute;left:0;right:0;top:0;height:60%;z-index:3;transform-origin:top;transition:transform .7s ease;' +
+    'background:linear-gradient(180deg,#d8c59c,#c4ad7f);clip-path:polygon(0 0,100% 0,50% 100%);filter:drop-shadow(0 4px 4px #0003)}' +
+    '.gr-seal{position:absolute;left:50%;top:60%;z-index:4;width:68px;height:68px;margin:-34px 0 0 -34px;border:0;border-radius:50%;cursor:pointer;' +
+    'background:radial-gradient(circle at 35% 30%,#b8323a,#7a1018 70%);box-shadow:0 6px 14px #0007,inset 0 2px 4px #ffffff33,inset 0 -3px 6px #0006;display:flex;align-items:center;justify-content:center;' +
+    'transition:transform .5s ease,opacity .5s ease;animation:gr-pulse 2.2s ease-in-out 2s infinite}' +
+    '.gr-seal img{width:62%;filter:brightness(0) invert(1) sepia(1) saturate(2) hue-rotate(-20deg) brightness(.85) drop-shadow(0 1px 0 #0006);opacity:.85}' +
+    '.gr-hint{margin-top:26px;font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:#a49a88;opacity:0;animation:gx-up .8s ease 2s forwards}' +
+    '.gr-open .gr-flap{transform:rotateX(180deg);z-index:1}.gr-open .gr-seal{transform:scale(.4) translateY(-40px);opacity:0;pointer-events:none;animation:none}' +
+    '.gr-env{transition:margin-top .9s cubic-bezier(.2,.8,.2,1)}.gr-open .gr-env{margin-top:150px}.gr-open .gr-letter{transform:translateY(-62%);z-index:5;box-shadow:0 14px 30px #0006}' +
+    '.gr-btn{margin-top:44px;border:1px solid #c8a14e88;border-radius:999px;padding:12px 26px;background:#0000;color:#ecc878;font-size:10px;letter-spacing:.26em;text-transform:uppercase;opacity:0;pointer-events:none;transition:opacity .8s ease 1.2s;cursor:pointer}' +
+    '.gr-open .gr-btn{opacity:1;pointer-events:auto}.gr-open .gr-hint{display:none}' +
+    '@keyframes gr-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}' +
+    '@media (prefers-reduced-motion: reduce){.gr-seal{animation:none}.gr-letter,.gr-flap{transition:none}}';
+
+  function regalo(d, clave, cfg) {
+    estilos();
+    if (!document.getElementById('gr-css')) { var st = document.createElement('style'); st.id = 'gr-css'; st.textContent = CSS_REGALO; document.head.appendChild(st); }
+    var o = document.createElement('div');
+    o.className = 'gr-wrap';
+    o.setAttribute('role', 'dialog');
+    o.setAttribute('aria-label', 'Tienes un regalo');
+    o.innerHTML = '<p class="gr-top font-data"></p><p class="gr-title font-display"></p>' +
+      '<div class="gr-env"><div class="gr-back"></div><div class="gr-letter"><p class="gr-msg font-display"></p><p class="gr-from font-data"></p></div>' +
+      '<div class="gr-front"></div><div class="gr-flap"></div>' +
+      '<button type="button" class="gr-seal" aria-label="Abrir el sobre"><img src="/brand/gara-flower-official.png" alt=""></button></div>' +
+      '<p class="gr-hint font-data">Toca el sello para abrir</p>' +
+      '<button type="button" class="gr-btn font-data">Ver mi regalo</button>';
+    o.querySelector('.gr-top').textContent = d.nombre.toUpperCase() + ' · N.º ' + d.numero;
+    o.querySelector('.gr-title').textContent = (d.saludo ? d.saludo + ', tienes' : 'Tienes') + ' un regalo';
+    o.querySelector('.gr-msg').textContent = '“' + cfg.mensaje + '”';
+    o.querySelector('.gr-from').textContent = cfg.de ? '— ' + cfg.de : '';
+    document.body.appendChild(o);
+    marcar(clave);
+    requestAnimationFrame(function () { o.classList.add('gx-in'); });
+    o.querySelector('.gr-seal').addEventListener('click', function (ev) {
+      activarMovimiento(ev);
+      if (navigator.vibrate && !reducido) { try { navigator.vibrate([25, 60, 40]); } catch (e) {} }
+      o.classList.add('gr-open');
+    });
+    o.querySelector('.gr-btn').addEventListener('click', function (ev) {
+      activarMovimiento(ev);
+      if (reproductor && reproductor.alAbrir) { try { reproductor.audio.play().catch(function () {}); } catch (e) {} }
+      o.classList.add('gx-out');
+      setTimeout(function () { if (o.parentNode) o.parentNode.removeChild(o); }, 850);
+    });
   }
 
   function mostrar(d, clave) {
