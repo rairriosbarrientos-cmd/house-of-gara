@@ -1,0 +1,18 @@
+{
+  "base": "tools/certificado-base.png",
+  "foto": "entradas/legado/foto1.png",
+  "nombre": "LEGADO",
+  "subtitulo": "CARTERA GARA / EJEMPLAR ÚNICO",
+  "codigo": "GA-CB-26-000149",
+  "propietario": "Brian Bolaina Villegas",
+  "fecha": "11 de noviembre de 2026",
+  "detalles": [
+    "Tono miel dorado · Formato trifold · Ventana para ID",
+    "Costura a mano tono arena · Grabado GARA"
+  ],
+  "firma": "Brian Bolaina Villegas",
+  "url": "https://garaleathergoods.mx/verify/gara-000149/",
+  "titulo": "Certificado GARA — Legado · GA-CB-26-000149",
+  "salida": "entradas/legado/certificado.pdf",
+  "material": "Piel exótica de pata de avestruz"
+}

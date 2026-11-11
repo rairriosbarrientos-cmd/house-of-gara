@@ -19,11 +19,13 @@ const LS_DET=spec.lsDetalles??0;
  ${t(1346,1437,spec.codigo,'DejaVu Serif',66.7)}
  ${t(1346,1700,spec.propietario,'DejaVu Serif',44.2)}
  ${t(1346,1892,spec.fecha,'DejaVu Serif',42.5)}
+ ${spec.material?t(1346,2258,spec.material,'DejaVu Serif',39.9):''}
  ${t(1346,2404,spec.detalles[0],'DejaVu Serif',29.6,`letter-spacing="${LS_DET}"`)}
  ${t(1346,2450,spec.detalles[1]||'','DejaVu Serif',29.6,`letter-spacing="${LS_DET}"`)}
  ${spec.firma?t(1809,3067,spec.firma,'Liberation Serif',45.8,'font-style="italic" text-anchor="middle"'):''}
  </svg>`;
  const extra=[];
+ if(spec.material){patches.push(rect(1340,2212,980,62));}
  if(spec.firmaImg){const fi=await sharp(spec.firmaImg).resize(470,215,{fit:'inside'}).png().toBuffer();const fm=await sharp(fi).metadata();
   extra.push(rect(1560,2930,500,250));extra.push({input:fi,left:Math.round(1806-fm.width/2),top:Math.round(3176-fm.height)});spec.firma='';}
  const png=await sharp(BASE).removeAlpha().composite([...patches,{input:photo,left:270,top:1009},{input:qr,left:2118,top:3043},{input:Buffer.from(svg),left:0,top:0},...extra]).png().toBuffer();
