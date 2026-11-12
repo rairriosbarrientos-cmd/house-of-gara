@@ -1,0 +1,18 @@
+{
+  "base": "tools/certificado-base.png",
+  "foto": "entradas/atlante/foto1.png",
+  "nombre": "ATLANTE",
+  "subtitulo": "CARTERA GARA / EJEMPLAR ÚNICO",
+  "codigo": "GA-CB-26-000150",
+  "propietario": "Ing. Guillermo Morales",
+  "fecha": "12 de noviembre de 2026",
+  "material": "Piel exótica de mantarraya",
+  "detalles": [
+    "Estampado jaguar con perla central · Broche de acero",
+    "Interior coñac y gamuza · Costura naranja · Grabado GARA"
+  ],
+  "firma": "Ing. Guillermo Morales",
+  "url": "https://garaleathergoods.mx/verify/gara-000150/",
+  "titulo": "Certificado GARA — Atlante · GA-CB-26-000150",
+  "salida": "entradas/atlante/certificado.pdf"
+}

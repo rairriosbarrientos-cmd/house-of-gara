@@ -1,0 +1,42 @@
+{
+  "plantilla": "nazas",
+  "slug": "atlante",
+  "nombre": "Atlante",
+  "numero": "000150",
+  "codigo": "GA-CB-26-000150",
+  "propietario": "Ing. Guillermo Morales",
+  "saludo": "Ing. Guillermo",
+  "fecha": "12 de noviembre de 2026",
+  "historia": "Atlante nace en Tula, Hidalgo, donde hace más de mil años los toltecas levantaron guerreros de piedra de casi cinco metros para sostener el techo de su templo. No eran adorno: eran estructura. Su nombre, tolteca, terminó significando maestro constructor, y en los muros de su ciudad dejaron tallados jaguares en marcha. Esta pieza lleva esa misma piel de jaguar sobre mantarraya, una de las pieles más duras que existen, con una perla al centro como el escudo que los atlantes llevan en el pecho.",
+  "descripcion": "Por fuera, la mantarraya resiste lo que venga; por dentro, la piel coñac y la gamuza guardan lo esencial, y el broche de acero sostiene los billetes con la firmeza de una columna. Elaborada a mano para el Ing. Guillermo Morales, Atlante es un ejemplar único para quien sabe que las cosas grandes se sostienen desde abajo, con cálculo y con carácter. Fiera por fuera. Columna por dentro.",
+  "color": "Mantarraya jaguar con interior coñac",
+  "materiales": [
+    "Piel exótica de mantarraya",
+    "Estampado jaguar con perla central",
+    "Broche de acero para billetes",
+    "Interior en piel coñac y gamuza",
+    "Costura a mano tono naranja",
+    "Grabado GARA"
+  ],
+  "craftNote": "Pieza real fotografiada: frente, reverso con perla y abierta.",
+  "accent": "#c98a3a",
+  "swatch": "miel",
+  "extra": [
+    [
+      "Fine full-grain cowhide",
+      "Piel exótica de mantarraya"
+    ]
+  ],
+  "fotos": [
+    "entradas/atlante/foto1.png",
+    "entradas/atlante/foto2.png",
+    "entradas/atlante/foto3.png"
+  ],
+  "recorte": "entradas/atlante/recorte.png",
+  "certificado": "entradas/atlante/certificado.pdf",
+  "margenRecorte": {
+    "arriba": 0.34,
+    "izquierda": 0.14,
+    "derecha": 0.14
+  }
+}
