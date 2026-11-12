@@ -1,0 +1,25 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//GARA Atelier//Cuidado//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:cuidado-ga-cb-26-000150@garaleathergoods.mx
+DTSTAMP:20261112T215620Z
+DTSTART;VALUE=DATE:20270212
+DTEND;VALUE=DATE:20270213
+RRULE:FREQ=MONTHLY;INTERVAL=3;COUNT=12
+SUMMARY:Cuidado GARA · Hidrata tu Atlante
+DESCRIPTION:Hora de consentir tu Atlante:\n1. Límpiala con un paño seco 
+ o apenas húmedo.\n2. Aplica un poco de acondicionador para piel y deja q
+ ue absorba.\n3. Guárdala lejos del sol directo y la humedad.\n\nTu certi
+ ficado: https://garaleathergoods.mx/verify/gara-000150/
+URL:https://garaleathergoods.mx/verify/gara-000150/
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Hidrata tu Atlante GARA
+TRIGGER:PT10H
+END:VALARM
+END:VEVENT
+END:VCALENDAR
