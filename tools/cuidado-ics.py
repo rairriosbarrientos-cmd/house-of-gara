@@ -47,3 +47,16 @@ for d in sorted(os.listdir(os.path.join(SITIO, 'verify'))):
     hechos += 1
     print(codigo, nombre, ini)
 print('archivos:', hechos)
+
+# ---- nfc/archivo.json: resumen del registro (último número, piezas con dueño) para el mapa y los números especiales ----
+import json as _json
+_nums, _con = [], 0
+for _d in sorted(os.listdir(os.path.join(SITIO, 'verify'))):
+    if not re.fullmatch(r'gara-\d{6}', _d): continue
+    _h = open(os.path.join(SITIO, 'verify', _d, 'index.html'), encoding='utf-8').read()
+    _nums.append(int(_d[-6:]))
+    if 'Esta pieza es tuya' in _h: _con += 1
+_ult = max(_nums); _esp = (_ult // 50 + 1) * 50
+_json.dump({'ultimo': _ult, 'registradas': len(_nums), 'conDueno': _con, 'siguienteEspecial': _esp},
+           open(os.path.join(SITIO, 'nfc', 'archivo.json'), 'w'), indent=1)
+print('archivo.json', _ult, len(_nums), _con, _esp)
