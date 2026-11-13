@@ -154,26 +154,42 @@
     });
   }
 
+  // Modo taller (celular de GARA): abrir cualquier página con ?taller=1 una vez. Desde entonces ese celular
+  // siempre ve la bienvenida o el sobre como si fuera la primera vez, y nunca el encuentro de piezas. ?taller=0 lo apaga.
+  function modoTaller() {
+    var m = location.search.match(/[?&]taller=([01])/);
+    try {
+      if (m) { if (m[1] === '1') localStorage.setItem('gara-taller', '1'); else localStorage.removeItem('gara-taller'); }
+      return localStorage.getItem('gara-taller') === '1';
+    } catch (e) { return false; }
+  }
+
+  var cartaRegalo = null; // para volver a abrir el sobre desde la página
   function apertura() {
     var d = datos();
     var clave = 'gara-apertura-' + (d.codigo || location.pathname);
-    var forzar = /[?&]bienvenida\b/.test(location.search);
+    var taller = modoTaller();
+    var forzar = taller || /[?&]bienvenida\b/.test(location.search);
     if (!d.codigo) return;
-    // Si este celular ya es "de" otra pieza, es un encuentro entre dos dueños: una vez al día por pareja.
-    var mia = miPieza(d);
-    if (mia && !forzar) {
-      var cd = 'gara-duelo-' + mia.numero + '-' + d.numero + '-' + new Date().toISOString().slice(0, 10);
-      if (vista(cd)) return;
-      marcar(cd);
-      var e2 = 0;
-      return (function esperar2() { if (!introTerminada() && e2 < 5000) { e2 += 200; return setTimeout(esperar2, 200); } duelo(d, mia); })();
-    }
-    if (vista(clave) && !forzar) return;
     var esperado = 0;
     (function esperar() {
       if (!introTerminada() && esperado < 5000) { esperado += 200; return setTimeout(esperar, 200); }
-      fetch('/nfc/regalo/' + d.codigo.toLowerCase() + '.json').then(function (r) { return r.ok ? r.json() : null; })
-        .then(function (cfg) { if (cfg && cfg.mensaje) regalo(d, clave, cfg); else mostrar(d, clave); }, function () { mostrar(d, clave); });
+      fetch('/nfc/regalo/' + d.codigo.toLowerCase() + '.json').then(function (r) { return r.ok ? r.json() : null; }, function () { return null; }).then(function (cfg) {
+        var esRegalo = !!(cfg && cfg.mensaje), primera = !vista(clave) || forzar;
+        if (esRegalo) cartaRegalo = function () { regalo(d, clave, cfg); };
+        // 1.º el sobre de regalo: la primera vez en este celular siempre gana.
+        if (esRegalo && primera) return regalo(d, clave, cfg);
+        // 2.º encuentro de piezas: este celular ya es "de" otra pieza. Una vez al día por pareja.
+        var mia = taller ? null : miPieza(d);
+        if (mia) {
+          var cd = 'gara-duelo-' + mia.numero + '-' + d.numero + '-' + new Date().toISOString().slice(0, 10);
+          if (vista(cd)) return;
+          marcar(cd);
+          return duelo(d, mia);
+        }
+        // 3.º bienvenida normal, la primera vez.
+        if (primera) mostrar(d, clave);
+      });
     })();
   }
 
@@ -357,6 +373,7 @@
     '.gx-oraculo q{display:block;margin-top:6px;font-size:19px;line-height:1.3;font-style:italic;color:#efe6d4;quotes:"“" "”";transition:opacity .35s}' +
     '.gx-oraculo i{display:block;margin-top:8px;font-size:8px;font-style:normal;letter-spacing:.24em;text-transform:uppercase;color:#a49a8899}' +
     '.gx-origen,.gx-perdida{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:1px solid #c8a14e66;border-radius:999px;padding:11px 16px;color:#ecc878;font-size:10px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none}' +
+    '.gx-carta{background:#0000;cursor:pointer;width:100%}' +
     '.gx-perdida{margin-top:12px;border-color:#ffffff22;color:#a49a88;width:100%;box-sizing:border-box}' +
     '.gx-especial{margin:0 auto;display:inline-block;border-radius:999px;padding:7px 14px;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#171412;background:linear-gradient(110deg,#c8a14e,#fbe7b0 45%,#ecc878 60%,#a7802f)}' +
     '.gx-archivo{display:block;font-size:9px;line-height:1.7;letter-spacing:.16em;text-transform:uppercase;color:#a49a88;text-decoration:none}' +
@@ -450,6 +467,14 @@
         a.querySelector('span').textContent = 'Llévame al origen · ' + cfg.origen.nombre;
         box.appendChild(a);
       }
+      // piezas de regalo: volver a leer la carta cuando quiera
+      var bc = document.createElement('button');
+      bc.type = 'button'; bc.className = 'gx-origen gx-carta font-data'; bc.style.display = 'none';
+      bc.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="1.6"/><path d="M3.5 6.8l8.5 6.4 8.5-6.4" stroke-linejoin="round"/></svg><span>Volver a abrir mi carta</span>';
+      bc.addEventListener('click', function () { if (cartaRegalo && !document.querySelector('.gr-wrap')) cartaRegalo(); });
+      box.appendChild(bc);
+      var nc = 0;
+      (function ver() { if (cartaRegalo) bc.style.display = ''; else if (++nc < 30) setTimeout(ver, 400); })();
       // números especiales del Archivo y enlace al mapa
       var num = parseInt(d.numero, 10), pie = document.createElement('a');
       pie.className = 'gx-archivo font-data'; pie.href = '/mapa/';
