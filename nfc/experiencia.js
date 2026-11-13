@@ -34,11 +34,12 @@
     return null;
   }
   function activarMovimiento(ev) {
+    // iPhone: el permiso para "agitar" se pide en cualquier toque, exista o no el botón de la tarjeta.
+    try { if (window.DeviceMotionEvent && typeof DeviceMotionEvent.requestPermission === 'function') DeviceMotionEvent.requestPermission().catch(function () {}); } catch (e) {}
     var b = botonMovimiento();
     if (!b) return;
     if (ev && ev.target && b.contains(ev.target)) return; // ya lo tocó directo
     try { b.click(); } catch (e) {}
-    try { if (window.DeviceMotionEvent && typeof DeviceMotionEvent.requestPermission === 'function') DeviceMotionEvent.requestPermission().catch(function () {}); } catch (e) {}
   }
   function escucharPrimerToque() {
     var una = function (ev) {
@@ -475,11 +476,18 @@
         sello.parentElement.style.cursor = 'pointer';
         sello.parentElement.addEventListener('click', function () { var n = Date.now(); if (n - t0 > 2500) toques = 0; t0 = n; if (++toques >= 5) { toques = 0; secreto(texto); } });
       }
-      var ultimo = 0, prev = null;
+      // Agitar: 3 golpes de aceleración fuertes en menos de un segundo (caminar o girar el celular no lo dispara).
+      var ultimo = 0, golpes = [];
       window.addEventListener('devicemotion', function (e) {
-        var g = e.accelerationIncludingGravity; if (!g || g.x == null) return;
-        if (prev) { var dv = Math.abs(g.x - prev.x) + Math.abs(g.y - prev.y) + Math.abs(g.z - prev.z); if (dv > 38 && Date.now() - ultimo > 3500) { ultimo = Date.now(); petalos(30); } }
-        prev = { x: g.x, y: g.y, z: g.z };
+        var a = e.acceleration, g = e.accelerationIncludingGravity, fuerza = null;
+        if (a && a.x != null) fuerza = Math.sqrt(a.x * a.x + a.y * a.y + a.z * a.z);
+        else if (g && g.x != null) fuerza = Math.abs(Math.sqrt(g.x * g.x + g.y * g.y + g.z * g.z) - 9.81);
+        if (fuerza === null || fuerza < 11) return;
+        var n = Date.now();
+        if (golpes.length && n - golpes[golpes.length - 1] < 70) return; // misma sacudida
+        golpes.push(n);
+        while (golpes.length && n - golpes[0] > 1000) golpes.shift();
+        if (golpes.length >= 3 && n - ultimo > 2500) { ultimo = n; golpes = []; petalos(34); }
       });
     });
   }

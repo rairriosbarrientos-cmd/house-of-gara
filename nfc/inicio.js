@@ -36,13 +36,9 @@
     var ya = document.getElementById('experiencia-gara');
     if (!enInicio()) { if (ya) ya.remove(); return; }
     if (ya || !hidratado()) return;
-    var track = document.querySelector('.rooms-track');
-    var sec = track && track.closest('section');
-    // En computadora GSAP envuelve la galería en un "pin-spacer": la referencia es ese contenedor.
-    if (sec && sec.parentElement && /pin-spacer/.test(sec.parentElement.className)) sec = sec.parentElement;
-    var antes = sec && sec.previousElementSibling; // encabezado "Colección real de GARA"
-    if (!antes || !antes.parentElement) return;
-    antes.parentElement.insertBefore(construir(), antes);
+    var hero = document.querySelector('section.hero-shell'); // justo debajo de la portada
+    if (!hero || !hero.parentElement) return;
+    hero.insertAdjacentElement('afterend', construir());
     // La galería fija calculó su posición antes de insertar la sección: pedirle que la recalcule.
     setTimeout(function () { try { window.dispatchEvent(new Event('resize')); } catch (e) {} }, 60);
   }
