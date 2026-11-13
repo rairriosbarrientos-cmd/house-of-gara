@@ -1,0 +1,22 @@
+{
+ "ciudades": [
+  {
+   "nombre": "Durango",
+   "lat": 24.02,
+   "lon": -104.66,
+   "piezas": 2
+  },
+  {
+   "nombre": "Estado de México",
+   "lat": 19.29,
+   "lon": -99.66,
+   "piezas": 1
+  },
+  {
+   "nombre": "Hidalgo",
+   "lat": 20.12,
+   "lon": -98.74,
+   "piezas": 1
+  }
+ ]
+}

@@ -93,11 +93,81 @@
     return st.display === 'none' || st.visibility === 'hidden' || parseFloat(st.opacity) < 0.05;
   }
 
+
+  // ---------- 8. duelo de piezas: tu pieza saluda a la de otro dueño ----------
+  function leerVisitas() { try { return JSON.parse(localStorage.getItem('gara-visitas') || '{}') || {}; } catch (e) { return {}; } }
+  function registrarVisita(d) {
+    if (!d.codigo) return;
+    var v = leerVisitas(), img = document.querySelector('.owner-pop img');
+    var r = v[d.codigo] || { n: 0 };
+    r.n += 1; r.nombre = d.nombre; r.numero = d.numero; if (img) r.img = img.getAttribute('src');
+    v[d.codigo] = r;
+    try { localStorage.setItem('gara-visitas', JSON.stringify(v)); } catch (e) {}
+  }
+  // "Mi pieza" = la que más veces he abierto en este celular (mínimo 2) y que no es la que estoy viendo.
+  function miPieza(d) {
+    var v = leerVisitas(), yo = v[d.codigo] ? v[d.codigo].n : 0, mejor = null;
+    for (var c in v) if (c !== d.codigo && v[c].n >= 2 && v[c].n > yo && (!mejor || v[c].n > mejor.n)) mejor = v[c];
+    return mejor;
+  }
+  var CSS_DUELO = '' +
+    '.gd{position:fixed;inset:0;z-index:2147483001;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;overflow:hidden;' +
+    'background:radial-gradient(60% 45% at 50% 42%,#2a1f12 0%,#0d0a07 58%,#050403 100%);color:#efe6d4;opacity:0;transition:opacity .6s}' +
+    '.gd.gx-in{opacity:1}.gd.gx-out{opacity:0;transition:opacity .7s}' +
+    '.gd-top{font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:#d9b45f}' +
+    '.gd-ring{position:relative;margin-top:26px;width:min(86vw,340px);height:190px}' +
+    '.gd-ring img{position:absolute;top:0;width:46%;height:100%;object-fit:contain;object-position:bottom;filter:drop-shadow(0 16px 18px #000c)}' +
+    '.gd-a{left:0;animation:gd-izq 1.2s cubic-bezier(.2,.8,.2,1) .3s both}.gd-b{right:0;animation:gd-der 1.2s cubic-bezier(.2,.8,.2,1) .3s both}' +
+    '.gd-x{position:absolute;left:50%;top:50%;width:44px;height:44px;margin:-22px;background:url(/brand/gara-flower-official.png) center/contain no-repeat;opacity:0;animation:gd-flor 1s ease 1.3s forwards;filter:drop-shadow(0 0 14px #ecc878aa)}' +
+    '.gd-t{margin-top:26px;font-size:25px;line-height:1.2;max-width:330px;opacity:0;animation:gx-up 1s ease 1.5s forwards}' +
+    '.gd-s{margin-top:10px;font-size:17px;font-style:italic;color:#d9c9a6;max-width:320px;opacity:0;animation:gx-up 1s ease 1.9s forwards}' +
+    '.gd-n{margin-top:14px;font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:#a49a88;opacity:0;animation:gx-up 1s ease 2.2s forwards}' +
+    '@keyframes gd-izq{from{transform:translateX(-120%) rotate(-14deg);opacity:0}to{transform:translateX(6%) rotate(-5deg);opacity:1}}' +
+    '@keyframes gd-der{from{transform:translateX(120%) rotate(14deg);opacity:0}to{transform:translateX(-6%) rotate(5deg);opacity:1}}' +
+    '@keyframes gd-flor{0%{opacity:0;transform:scale(.2) rotate(-90deg)}60%{opacity:1;transform:scale(1.25) rotate(10deg)}100%{opacity:1;transform:scale(1) rotate(0)}}';
+  var SALUDOS = ['Dos piezas del Archivo GARA acaban de conocerse.', 'Hechas por las mismas manos, llevadas por caminos distintos.', 'Ninguna se repite. Hoy se encontraron.', 'Se reconocen: las dos nacieron en el mismo taller.'];
+
+  function duelo(d, mia) {
+    estilos();
+    if (!document.getElementById('gd-css')) { var st = document.createElement('style'); st.id = 'gd-css'; st.textContent = CSS_DUELO; document.head.appendChild(st); }
+    var aqui = document.querySelector('.owner-pop img');
+    var o = document.createElement('div');
+    o.className = 'gd'; o.setAttribute('role', 'dialog'); o.setAttribute('aria-label', 'Encuentro de piezas GARA');
+    o.innerHTML = '<p class="gd-top font-data">Encuentro de piezas</p>' +
+      '<div class="gd-ring">' + (mia.img ? '<img class="gd-a" alt="">' : '') + (aqui ? '<img class="gd-b" alt="">' : '') + '<span class="gd-x"></span></div>' +
+      '<p class="gd-t font-display"></p><p class="gd-s font-display"></p><p class="gd-n font-data"></p>' +
+      '<button type="button" class="gx-btn font-data">Conocer a ' + '</button>';
+    if (mia.img) o.querySelector('.gd-a').src = mia.img;
+    if (aqui) o.querySelector('.gd-b').src = aqui.getAttribute('src');
+    o.querySelector('.gd-t').textContent = mia.nombre + ' saluda a ' + d.nombre;
+    o.querySelector('.gd-s').textContent = SALUDOS[Math.floor(Math.random() * SALUDOS.length)];
+    o.querySelector('.gd-n').textContent = 'N.º ' + mia.numero + ' × N.º ' + d.numero;
+    o.querySelector('.gx-btn').textContent = 'Conocer a ' + d.nombre;
+    document.body.appendChild(o);
+    requestAnimationFrame(function () { o.classList.add('gx-in'); });
+    setTimeout(function () { petalos(22); if (navigator.vibrate && !reducido) { try { navigator.vibrate([20, 60, 20, 60, 40]); } catch (e) {} } }, 1400);
+    o.querySelector('.gx-btn').addEventListener('click', function (ev) {
+      activarMovimiento(ev);
+      o.classList.add('gx-out');
+      setTimeout(function () { if (o.parentNode) o.parentNode.removeChild(o); }, 750);
+    });
+  }
+
   function apertura() {
     var d = datos();
     var clave = 'gara-apertura-' + (d.codigo || location.pathname);
     var forzar = /[?&]bienvenida\b/.test(location.search);
-    if (!d.codigo || (vista(clave) && !forzar)) return;
+    if (!d.codigo) return;
+    // Si este celular ya es "de" otra pieza, es un encuentro entre dos dueños: una vez al día por pareja.
+    var mia = miPieza(d);
+    if (mia && !forzar) {
+      var cd = 'gara-duelo-' + mia.numero + '-' + d.numero + '-' + new Date().toISOString().slice(0, 10);
+      if (vista(cd)) return;
+      marcar(cd);
+      var e2 = 0;
+      return (function esperar2() { if (!introTerminada() && e2 < 5000) { e2 += 200; return setTimeout(esperar2, 200); } duelo(d, mia); })();
+    }
+    if (vista(clave) && !forzar) return;
     var esperado = 0;
     (function esperar() {
       if (!introTerminada() && esperado < 5000) { esperado += 200; return setTimeout(esperar, 200); }
@@ -287,6 +357,8 @@
     '.gx-oraculo i{display:block;margin-top:8px;font-size:8px;font-style:normal;letter-spacing:.24em;text-transform:uppercase;color:#a49a8899}' +
     '.gx-origen,.gx-perdida{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:1px solid #c8a14e66;border-radius:999px;padding:11px 16px;color:#ecc878;font-size:10px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none}' +
     '.gx-perdida{margin-top:12px;border-color:#ffffff22;color:#a49a88;width:100%;box-sizing:border-box}' +
+    '.gx-especial{margin:0 auto;display:inline-block;border-radius:999px;padding:7px 14px;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#171412;background:linear-gradient(110deg,#c8a14e,#fbe7b0 45%,#ecc878 60%,#a7802f)}' +
+    '.gx-archivo{display:block;font-size:9px;line-height:1.7;letter-spacing:.16em;text-transform:uppercase;color:#a49a88;text-decoration:none}' +
     '.gx-petalo{position:fixed;left:50%;top:42%;z-index:2147483002;width:26px;height:26px;margin:-13px;pointer-events:none;background:url(/brand/gara-flower-official.png) center/contain no-repeat;animation:gx-volar var(--t,1.8s) cubic-bezier(.15,.6,.3,1) forwards}' +
     '@keyframes gx-volar{0%{transform:translate(0,0) rotate(0) scale(.3);opacity:1}100%{transform:translate(var(--x),var(--y)) rotate(var(--r)) scale(var(--s,1));opacity:0}}' +
     '.gx-secreto{position:fixed;inset:0;z-index:2147483003;display:flex;align-items:center;justify-content:center;padding:28px;background:#050403e6;opacity:0;transition:opacity .5s}' +
@@ -377,6 +449,22 @@
         a.querySelector('span').textContent = 'Llévame al origen · ' + cfg.origen.nombre;
         box.appendChild(a);
       }
+      // números especiales del Archivo y enlace al mapa
+      var num = parseInt(d.numero, 10), pie = document.createElement('a');
+      pie.className = 'gx-archivo font-data'; pie.href = '/mapa/';
+      box.appendChild(pie);
+      if (num % 50 === 0) {
+        var chip = document.createElement('p');
+        chip.className = 'gx-especial font-data';
+        chip.textContent = '★ Número de colección · Pieza N.º ' + num + ' del Archivo';
+        box.insertBefore(chip, box.firstChild);
+      }
+      pie.textContent = 'Ver GARA en el mapa →';
+      fetch('/nfc/archivo.json').then(function (r) { return r.ok ? r.json() : null; }).then(function (ar) {
+        if (!ar || !ar.siguienteEspecial) return;
+        var faltan = ar.siguienteEspecial - ar.ultimo;
+        pie.textContent = 'El Archivo va en la N.º ' + ar.ultimo + ' · faltan ' + faltan + ' para la N.º ' + ar.siguienteEspecial + ', que trae sorpresa · Ver el mapa →';
+      }).catch(function () {});
       var caja = document.querySelector('.owner-message');
       (caja || ancla).insertAdjacentElement('afterend', box);
       // secretos: 5 toques al sello giratorio, o agitar el celular
@@ -408,6 +496,7 @@
 
   function iniciar() {
     escucharPrimerToque();
+    registrarVisita(datos());
     mensaje().then(apertura, apertura);
     // la sección de cuidados aparece después de la hidratación; reintento unos segundos
     var n = 0;
