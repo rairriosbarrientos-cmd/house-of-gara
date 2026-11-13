@@ -38,6 +38,7 @@
     if (!b) return;
     if (ev && ev.target && b.contains(ev.target)) return; // ya lo tocó directo
     try { b.click(); } catch (e) {}
+    try { if (window.DeviceMotionEvent && typeof DeviceMotionEvent.requestPermission === 'function') DeviceMotionEvent.requestPermission().catch(function () {}); } catch (e) {}
   }
   function escucharPrimerToque() {
     var una = function (ev) {
@@ -274,12 +275,143 @@
     boton.parentElement.insertAdjacentElement('afterend', d);
   }
 
+
+  // ---------- 7. extras: días juntos, oráculo, origen en el mapa, secretos y "si me encuentras" ----------
+  var CSS_EXTRA = '' +
+    '.gx-extras{margin:22px auto 0;max-width:340px;display:flex;flex-direction:column;gap:10px;text-align:center}' +
+    '.gx-dias{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#d9b45f}' +
+    '.gx-dias b{font-weight:500;color:#efe6d4;font-size:13px;letter-spacing:.12em}' +
+    '.gx-oraculo{border:1px solid #c8a14e40;border-radius:16px;background:#0a0806;padding:14px 16px;cursor:pointer;-webkit-tap-highlight-color:transparent}' +
+    '.gx-oraculo small{display:block;font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:#d9b45f}' +
+    '.gx-oraculo q{display:block;margin-top:6px;font-size:19px;line-height:1.3;font-style:italic;color:#efe6d4;quotes:"“" "”";transition:opacity .35s}' +
+    '.gx-oraculo i{display:block;margin-top:8px;font-size:8px;font-style:normal;letter-spacing:.24em;text-transform:uppercase;color:#a49a8899}' +
+    '.gx-origen,.gx-perdida{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:1px solid #c8a14e66;border-radius:999px;padding:11px 16px;color:#ecc878;font-size:10px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none}' +
+    '.gx-perdida{margin-top:12px;border-color:#ffffff22;color:#a49a88;width:100%;box-sizing:border-box}' +
+    '.gx-petalo{position:fixed;left:50%;top:42%;z-index:2147483002;width:26px;height:26px;margin:-13px;pointer-events:none;background:url(/brand/gara-flower-official.png) center/contain no-repeat;animation:gx-volar var(--t,1.8s) cubic-bezier(.15,.6,.3,1) forwards}' +
+    '@keyframes gx-volar{0%{transform:translate(0,0) rotate(0) scale(.3);opacity:1}100%{transform:translate(var(--x),var(--y)) rotate(var(--r)) scale(var(--s,1));opacity:0}}' +
+    '.gx-secreto{position:fixed;inset:0;z-index:2147483003;display:flex;align-items:center;justify-content:center;padding:28px;background:#050403e6;opacity:0;transition:opacity .5s}' +
+    '.gx-secreto.gx-in{opacity:1}.gx-secreto div{max-width:320px;text-align:center;border:1px solid #c8a14e66;border-radius:20px;padding:26px 22px;background:#0d0a07}' +
+    '.gx-secreto small{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:#d9b45f}.gx-secreto p{margin:12px 0 0;font-size:20px;line-height:1.35;font-style:italic;color:#efe6d4}' +
+    '.gx-secreto em{display:block;margin-top:16px;font-size:9px;font-style:normal;letter-spacing:.24em;text-transform:uppercase;color:#a49a88}';
+
+  var FRASES = ['Lo hecho a mano no se repite dos veces.', 'La piel recuerda cada día que pasa contigo.', 'Las marcas no son defectos: son tu historia.', 'Lo bien hecho no necesita prisa.', 'Cada puntada fue una decisión.', 'Envejecer bien también es un arte.', 'Guarda lo esencial; suelta lo demás.'];
+  var MESES = { enero: 0, febrero: 1, marzo: 2, abril: 3, mayo: 4, junio: 5, julio: 6, agosto: 7, septiembre: 8, octubre: 9, noviembre: 10, diciembre: 11 };
+
+  function petalos(n) {
+    if (reducido) return;
+    for (var i = 0; i < (n || 26); i++) {
+      var s = document.createElement('span'), a = Math.random() * Math.PI * 2, r = 120 + Math.random() * 260;
+      s.className = 'gx-petalo';
+      s.style.setProperty('--x', Math.cos(a) * r + 'px'); s.style.setProperty('--y', Math.sin(a) * r + 90 + 'px');
+      s.style.setProperty('--r', (Math.random() * 720 - 360) + 'deg'); s.style.setProperty('--s', 0.5 + Math.random());
+      s.style.setProperty('--t', 1.3 + Math.random() * 1.2 + 's');
+      document.body.appendChild(s);
+      (function (el) { setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 2800); })(s);
+    }
+    if (navigator.vibrate) { try { navigator.vibrate(30); } catch (e) {} }
+  }
+
+  function secreto(texto) {
+    if (document.querySelector('.gx-secreto')) return;
+    var o = document.createElement('div');
+    o.className = 'gx-secreto';
+    o.innerHTML = '<div><small class="font-data">Secreto del taller</small><p class="font-display"></p><em class="font-data">Toca para cerrar</em></div>';
+    o.querySelector('p').textContent = texto;
+    document.body.appendChild(o);
+    requestAnimationFrame(function () { o.classList.add('gx-in'); });
+    petalos(14);
+    o.addEventListener('click', function () { o.classList.remove('gx-in'); setTimeout(function () { if (o.parentNode) o.parentNode.removeChild(o); }, 500); });
+  }
+
+  function diasJuntos() {
+    var m = (document.body.textContent || '').match(/Hecha el\s*(\d{1,2}) de ([a-záé]+) de (20\d\d)/i);
+    if (!m || MESES[m[2].toLowerCase()] === undefined) return null;
+    var ini = new Date(+m[3], MESES[m[2].toLowerCase()], +m[1]), hoy = new Date();
+    hoy.setHours(0, 0, 0, 0);
+    var dias = Math.round((hoy - ini) / 86400000);
+    if (dias < 0) return null;
+    var anios = hoy.getFullYear() - ini.getFullYear();
+    return { dias: dias, aniversario: anios > 0 && hoy.getMonth() === ini.getMonth() && hoy.getDate() === ini.getDate() ? anios : 0 };
+  }
+
+  var extrasListos = false;
+  function extras() {
+    var d = datos();
+    if (extrasListos || !d.codigo) return;
+    var ancla = null, ps = document.querySelectorAll('p');
+    for (var i = 0; i < ps.length; i++) if (/Ejemplar único\s*$/.test(ps[i].textContent) && /max-w-md/.test(ps[i].className)) { ancla = ps[i]; break; }
+    if (!ancla) return;
+    extrasListos = true;
+    estilos();
+    if (!document.getElementById('gx-css2')) { var st = document.createElement('style'); st.id = 'gx-css2'; st.textContent = CSS_EXTRA; document.head.appendChild(st); }
+    fetch('/nfc/pieza/' + d.codigo.toLowerCase() + '.json').then(function (r) { return r.ok ? r.json() : {}; }, function () { return {}; }).then(function (cfg) {
+      cfg = cfg || {};
+      var box = document.createElement('div');
+      box.className = 'gx-extras';
+      // días juntos
+      var dj = d.disponible ? null : diasJuntos();
+      if (dj) {
+        var p = document.createElement('p');
+        p.className = 'gx-dias font-data';
+        p.innerHTML = dj.aniversario ? 'Hoy cumplen <b>' + dj.aniversario + (dj.aniversario === 1 ? ' año' : ' años') + '</b> juntos'
+          : dj.dias === 0 ? 'Hoy empieza su historia' : 'Llevan <b>' + dj.dias + (dj.dias === 1 ? ' día' : ' días') + '</b> juntos';
+        box.appendChild(p);
+        if (dj.aniversario) setTimeout(function () { petalos(40); }, 1200);
+      }
+      // oráculo
+      var frases = (cfg.frases || []).concat(FRASES), k = Math.floor(Math.random() * Math.min(frases.length, (cfg.frases || []).length || frases.length));
+      var o = document.createElement('div');
+      o.className = 'gx-oraculo';
+      o.setAttribute('role', 'button');
+      o.innerHTML = '<small class="font-data"></small><q class="font-display"></q><i class="font-data">Toca para otra</i>';
+      o.querySelector('small').textContent = d.nombre + ' dice';
+      var q = o.querySelector('q'); q.textContent = frases[k];
+      o.addEventListener('click', function () { k = (k + 1) % frases.length; q.style.opacity = 0; setTimeout(function () { q.textContent = frases[k]; q.style.opacity = 1; }, 300); });
+      box.appendChild(o);
+      // origen
+      if (cfg.origen && cfg.origen.buscar) {
+        var a = document.createElement('a');
+        a.className = 'gx-origen font-data'; a.target = '_blank'; a.rel = 'noopener';
+        a.href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(cfg.origen.buscar);
+        a.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span></span>';
+        a.querySelector('span').textContent = 'Llévame al origen · ' + cfg.origen.nombre;
+        box.appendChild(a);
+      }
+      var caja = document.querySelector('.owner-message');
+      (caja || ancla).insertAdjacentElement('afterend', box);
+      // secretos: 5 toques al sello giratorio, o agitar el celular
+      var sello = document.querySelector('.cert-seal-spin');
+      var texto = cfg.secreto || 'Antes de entregarla, esta pieza pasó una última vez por mis manos. Si la tienes tú, es porque quedó como debía.';
+      if (sello && sello.parentElement) {
+        var toques = 0, t0 = 0;
+        sello.parentElement.style.cursor = 'pointer';
+        sello.parentElement.addEventListener('click', function () { var n = Date.now(); if (n - t0 > 2500) toques = 0; t0 = n; if (++toques >= 5) { toques = 0; secreto(texto); } });
+      }
+      var ultimo = 0, prev = null;
+      window.addEventListener('devicemotion', function (e) {
+        var g = e.accelerationIncludingGravity; if (!g || g.x == null) return;
+        if (prev) { var dv = Math.abs(g.x - prev.x) + Math.abs(g.y - prev.y) + Math.abs(g.z - prev.z); if (dv > 38 && Date.now() - ultimo > 3500) { ultimo = Date.now(); petalos(30); } }
+        prev = { x: g.x, y: g.y, z: g.z };
+      });
+    });
+  }
+
+  function encontrada() {
+    var d = datos(), av = document.querySelector('.gx-aviso');
+    if (!av || d.disponible || !d.codigo || document.querySelector('.gx-perdida')) return;
+    var a = document.createElement('a');
+    a.className = 'gx-perdida font-data'; a.target = '_blank'; a.rel = 'noopener';
+    a.href = 'https://wa.me/527444001162?text=' + encodeURIComponent('Hola GARA, encontré la pieza ' + d.nombre + ' (' + d.codigo + ') y quiero ayudar a que regrese con su dueño.');
+    a.textContent = '¿La encontraste? Ayúdala a volver';
+    av.insertAdjacentElement('afterend', a);
+  }
+
   function iniciar() {
     escucharPrimerToque();
     mensaje().then(apertura, apertura);
     // la sección de cuidados aparece después de la hidratación; reintento unos segundos
     var n = 0;
-    (function intento() { cuidado(); aviso(); if ((!document.querySelector('.gx-cuidado') || !document.querySelector('.gx-aviso')) && ++n < 20) setTimeout(intento, 400); })();
+    (function intento() { cuidado(); aviso(); encontrada(); extras(); if ((!document.querySelector('.gx-cuidado') || !document.querySelector('.gx-aviso') || !extrasListos) && ++n < 20) setTimeout(intento, 400); })();
   }
 
   // Esperar a que React termine de hidratar la página antes de tocar el DOM (si no, React marca error #418).
