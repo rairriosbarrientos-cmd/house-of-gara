@@ -1,0 +1,43 @@
+{
+  "plantilla": "atlante",
+  "slug": "campana",
+  "nombre": "Campana",
+  "numero": "000151",
+  "codigo": "GA-EL-26-000151",
+  "propietario": "Ing. Jovanka Vidal",
+  "saludo": "Ing. Jovanka",
+  "fecha": "18 de noviembre de 2026",
+  "historia": "Campana nace en Hermosillo, a los pies del cerro que lleva su nombre y que vigila la ciudad desde siempre. Se dice que sus rocas suenan como campana cuando se golpean, y que de ahí viene el nombre. Su solapa curva guarda esa misma silueta, y su piel color tierra de desierto, con sombras de sol de mediodía, recuerda el paisaje de Sonora, donde aprender a construir significa aprender a sostener algo sobre la piedra. Lleva grabado su nombre, JOVANKA, como se firman las obras bien hechas.",
+  "descripcion": "Cierra con un broche de latón que hace clic con la seguridad de una junta bien ejecutada, y por dentro la gamuza ocre guarda lo que importa sin rozarlo. Con los años su piel se oscurecerá y ganará brillo, como el cerro al caer la tarde. Elaborada a mano para la Ing. Jovanka Vidal, Campana es un ejemplar único para quien lleva el sol de Sonora a donde va y sabe que lo firme no necesita hacer ruido. Sol por fuera. Cimiento por dentro.",
+  "color": "Café coñac envejecido con interior ocre",
+  "materiales": [
+    "Fine full-grain cowhide",
+    "Pátina café coñac envejecida",
+    "Solapa curva con doble broche de latón",
+    "Interior en gamuza ocre",
+    "Costura a mano tono café",
+    "Grabado personalizado JOVANKA en dorado"
+  ],
+  "craftNote": "Pieza real fotografiada: abierta, con el grabado JOVANKA y su solapa con broche.",
+  "accent": "#b5732e",
+  "swatch": "cognac",
+  "subtitulo": "Estuche GARA · Ejemplar único",
+  "subtituloCertificado": "ESTUCHE GARA / EJEMPLAR ÚNICO",
+  "categoria": {
+    "clave": "accesorio",
+    "etiqueta": "Accesorio",
+    "etiquetaPlantilla": "Cartera"
+  },
+  "fotos": [
+    "entradas/campana/foto1.png",
+    "entradas/campana/foto2.png",
+    "entradas/campana/foto3.png"
+  ],
+  "recorte": "entradas/campana/recorte.png",
+  "certificado": "entradas/campana/certificado.pdf",
+  "margenRecorte": {
+    "arriba": 0.34,
+    "izquierda": 0.1,
+    "derecha": 0.1
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "base": "tools/certificado-base.png",
+  "foto": "entradas/campana/foto1.png",
+  "nombre": "CAMPANA",
+  "subtitulo": "ESTUCHE GARA / EJEMPLAR ÚNICO",
+  "codigo": "GA-EL-26-000151",
+  "propietario": "Ing. Jovanka Vidal",
+  "fecha": "18 de noviembre de 2026",
+  "detalles": [
+    "Pátina café coñac · Solapa curva con doble broche",
+    "Interior gamuza ocre · Costura café · Grabado JOVANKA"
+  ],
+  "firma": "Ing. Jovanka Vidal",
+  "url": "https://garaleathergoods.mx/verify/gara-000151/",
+  "titulo": "Certificado GARA — Campana · GA-EL-26-000151",
+  "salida": "entradas/campana/certificado.pdf"
+}
