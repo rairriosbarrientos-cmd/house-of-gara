@@ -87,5 +87,10 @@
    "lat": 35.68,
    "lon": 139.69
   }
- ]
+ ],
+ "taller": {
+  "nombre": "Taller GARA · Acapulco",
+  "lat": 16.85,
+  "lon": -99.88
+ }
 }

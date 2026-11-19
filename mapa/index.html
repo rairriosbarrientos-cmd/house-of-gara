@@ -127,9 +127,9 @@ Promise.all([fetch('/nfc/mapa.json').then(function(r){return r.json()}),fetch('/
  var cs=v[0].ciudades||[],prox=v[0].proximamente||[],ar=v[1]||{},g=byId('pts'),hx=byId('hitx'),ex=byId('etx'),ul=byId('lista'),enMapa=0,paises={};
  cs.sort(function(a,b){return b.piezas-a.piezas});
  var m=movil?1.9:1,P=cs.map(function(c){return xy(c.lat,c.lon)});
- // constelación: cada ciudad se une con sus 2 vecinas más cercanas
- var vistos={};cs.forEach(function(c,i){var o=[];cs.forEach(function(d,j){if(j!==i){var dd=Math.hypot(P[i][0]-P[j][0],P[i][1]-P[j][1]);if(dd>22)o.push([dd,j])}});o.sort(function(a,b){return a[0]-b[0]});
-  o.slice(0,2).forEach(function(q){var k=Math.min(i,q[1])+'-'+Math.max(i,q[1]);if(!vistos[k]){vistos[k]=1;arco(byId('arx'),P[i],P[q[1]],'',null,(i+q[1])%2?1:-1)}})});
+ // rutas: desde el taller en Acapulco hacia cada pieza
+ var T=v[0].taller,TP=T?xy(T.lat,T.lon):null;
+ if(TP){cs.forEach(function(c,i){if(Math.hypot(P[i][0]-TP[0],P[i][1]-TP[1])>16)arco(byId('arx'),TP,P[i],'',null,i%2?1:-1)})}
  cs.forEach(function(c,i){var p=P[i],r=(5+Math.min(c.piezas,6)*1.6)*m;enMapa+=c.piezas;
   var pa=c.pais||'México',o=paises[pa]||(paises[pa]={n:0,lat:0,lon:0});o.n+=c.piezas;o.lat+=c.lat*c.piezas;o.lon+=c.lon*c.piezas;
   var pt=el('g',{'class':'pt'});pt.style.animationDelay=(.5+i*.14)+'s';
@@ -140,6 +140,13 @@ Promise.all([fetch('/nfc/mapa.json').then(function(r){return r.json()}),fetch('/
   var izq=c.lado==='izq',dy=c.arriba?-14*m:(c.abajo?24*m:6*m),t=el('text',{x:izq?p[0]-r-11:p[0]+r+11,y:p[1]+dy,'class':'etq','text-anchor':izq?'end':'start'});t.textContent=c.nombre;ex.appendChild(t);
   var li=document.createElement('li');li.innerHTML='<b style="font-weight:400"></b><span class="mono"></span>';li.firstChild.textContent=c.nombre;li.lastChild.textContent=c.piezas+(c.piezas===1?' pieza':' piezas');
   li.addEventListener('pointerenter',function(){pt.classList.add('on')});li.addEventListener('pointerleave',function(){pt.classList.remove('on')});ul.appendChild(li)});
+ // taller
+ if(TP){var tg=el('g',{'class':'pt'});tg.style.animationDelay='.2s';tg.appendChild(el('circle',{cx:TP[0],cy:TP[1],r:22*m,'class':'aura'}));
+  tg.appendChild(el('circle',{cx:TP[0],cy:TP[1],r:13*m,fill:'#0b0907',stroke:'#fff3cf','stroke-width':1.8}));
+  tg.appendChild(el('image',{href:'/brand/gara-flower-official.png',x:TP[0]-10*m,y:TP[1]-10*m,width:20*m,height:20*m}));g.appendChild(tg);
+  var th=el('circle',{cx:TP[0],cy:TP[1],r:Math.max(14*m,18),'class':'hit'});th.addEventListener('pointerdown',function(e){e.stopPropagation();mostrar(th,T.nombre,'Aquí nace cada pieza')});hx.appendChild(th);
+  var tt=el('text',{x:TP[0]+13*m+10,y:TP[1]+5*m,'class':'etq',style:'fill:#ffe6a8;font-style:italic'});tt.textContent=T.nombre;ex.appendChild(tt);
+  var tl=document.createElement('li');tl.innerHTML='<b style="font-weight:400"></b><span class="mono">Aquí nace cada pieza</span>';tl.firstChild.textContent=T.nombre;ul.insertBefore(tl,ul.firstChild)}
  // ---- mundo ----
  var gw=byId('ptw'),hw=byId('hitw'),ew=byId('etw'),np=0,cen={};
  for(var pa in paises){var o=paises[pa],p=xw(o.lat/o.n,o.lon/o.n),mm=movil?1.8:1,r=(4+Math.min(o.n,30)*.28)*mm;np++;cen[pa]=p;
