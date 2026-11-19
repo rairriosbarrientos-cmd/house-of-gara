@@ -4,7 +4,7 @@
    "nombre": "Hermosillo, Sonora",
    "lat": 29.07,
    "lon": -110.96,
-   "piezas": 3
+   "piezas": 4
   },
   {
    "nombre": "Durango",
@@ -16,7 +16,7 @@
    "nombre": "Estado de México",
    "lat": 19.29,
    "lon": -99.66,
-   "piezas": 2,
+   "piezas": 3,
    "lado": "der"
   },
   {
@@ -24,7 +24,8 @@
    "lat": 20.67,
    "lon": -103.35,
    "piezas": 2,
-   "lado": "izq"
+   "lado": "izq",
+   "abajo": true
   },
   {
    "nombre": "Magdalena de Kino, Sonora",
@@ -69,6 +70,14 @@
    "lon": -100.43,
    "piezas": 1,
    "lado": "izq"
+  },
+  {
+   "nombre": "Hostotipaquillo, Jalisco",
+   "lat": 21.06,
+   "lon": -104.07,
+   "piezas": 1,
+   "lado": "izq",
+   "arriba": true
   }
  ]
 }
