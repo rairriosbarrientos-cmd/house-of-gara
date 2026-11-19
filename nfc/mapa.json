@@ -1,6 +1,12 @@
 {
  "ciudades": [
   {
+   "nombre": "Hermosillo, Sonora",
+   "lat": 29.07,
+   "lon": -110.96,
+   "piezas": 3
+  },
+  {
    "nombre": "Durango",
    "lat": 24.02,
    "lon": -104.66,
@@ -10,13 +16,59 @@
    "nombre": "Estado de México",
    "lat": 19.29,
    "lon": -99.66,
-   "piezas": 1
+   "piezas": 2,
+   "lado": "der"
+  },
+  {
+   "nombre": "Jalisco",
+   "lat": 20.67,
+   "lon": -103.35,
+   "piezas": 2,
+   "lado": "izq"
+  },
+  {
+   "nombre": "Magdalena de Kino, Sonora",
+   "lat": 30.63,
+   "lon": -110.96,
+   "piezas": 1,
+   "lado": "der"
+  },
+  {
+   "nombre": "Los Mochis, Sinaloa",
+   "lat": 25.79,
+   "lon": -108.99,
+   "piezas": 1,
+   "lado": "der"
+  },
+  {
+   "nombre": "Zacatecas",
+   "lat": 22.77,
+   "lon": -102.58,
+   "piezas": 1,
+   "lado": "der"
   },
   {
    "nombre": "Hidalgo",
    "lat": 20.12,
    "lon": -98.74,
-   "piezas": 1
+   "piezas": 1,
+   "lado": "der",
+   "arriba": true
+  },
+  {
+   "nombre": "Ciudad de México",
+   "lat": 19.43,
+   "lon": -99.13,
+   "piezas": 1,
+   "lado": "izq",
+   "abajo": true
+  },
+  {
+   "nombre": "Atoyac de Álvarez, Guerrero",
+   "lat": 17.2,
+   "lon": -100.43,
+   "piezas": 1,
+   "lado": "izq"
   }
  ]
 }
