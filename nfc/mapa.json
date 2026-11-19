@@ -79,5 +79,13 @@
    "lado": "izq",
    "arriba": true
   }
+ ],
+ "proximamente": [
+  {
+   "nombre": "Tokio",
+   "pais": "Japón",
+   "lat": 35.68,
+   "lon": 139.69
+  }
  ]
 }
