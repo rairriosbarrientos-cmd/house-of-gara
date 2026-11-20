@@ -1,0 +1,25 @@
+GARA — Carta de agradecimiento "RELIEVE" (versión 4)
+
+Medida final: 152 x 102 mm. Archivos a 158 x 108 mm (3 mm de sangrado por lado). Esquinas redondeadas de 4 mm (opcional).
+Todo el texto está convertido a curvas. Cada placa va en negro 100 %: el negro marca dónde va cada acabado.
+Foil: líneas mínimas de 0.2 mm y texto mínimo de 2.4 mm (ya cumplen). El foil nunca se encima con el barniz.
+
+FRENTE — piel negra
+  1-frente-piel-300dpi.png        Piel de grano plena flor impresa a todo color a sangre (300 dpi). Si usas papel símil piel, esta placa no se imprime.
+  2-frente-foil.pdf               Foil cobre / oro: la flor GARA con sus venas grabadas y el marco de puntadas.
+  3-frente-relieve-flor.pdf       Alto relieve en registro con el foil (la silueta completa de la flor): "foil + relieve".
+  4-frente-sello-GARA-seco.pdf    Bajo relieve ciego del logotipo GARA, como el sello que llevan tus piezas.
+
+REVERSO — papel marfil
+  5-reverso-tinta.pdf             Texto y QR en tinta café oscuro (Pantone 4625 C o K 90 %).
+  6-reverso-foil.pdf              Foil: costura vertical, "Gracias por elegir GARA.", "THANK YOU FOR CHOOSING GARA", línea, lema, firma y "ARCHIVO GARA".
+  7-reverso-relieve-flor.pdf      Alto relieve ciego del contorno y los pétalos de la flor grande (recortada por el borde izquierdo).
+  8-reverso-venas-grabadas.pdf    Bajo relieve ciego de las venas (líneas de 0.25 mm). Si el impresor pide más grueso, se sube a 0.3 mm.
+
+PAPEL Y ACABADO SUGERIDOS
+  Duplex de 600-700 g: frente negro mate + reverso algodón marfil.
+  Canto pintado cobre. Esquinas redondeadas de 4 mm.
+  Alternativa para el frente: papel negro símil piel (leatherette) en lugar de imprimir la placa 1.
+
+QR: https://garaleathergoods.mx/autentica/ (decodificado y comprobado).
+vista/ trae la simulación del acabado final (no es para imprimir).
