@@ -1,0 +1,22 @@
+GARA — Carta de agradecimiento (versión 2)
+
+Medida final: 152 x 102 mm. Archivos a 158 x 108 mm (3 mm de sangrado por lado).
+Todo el texto está convertido a curvas. Cada placa va en negro 100 %: el negro marca dónde va cada acabado.
+
+FRENTE (papel negro)
+  1-frente-impresion.pdf   Fondo negro a sangre. Si el papel ya es negro, esta placa NO se imprime.
+  2-frente-barniz-UV.pdf   Barniz UV sectorizado brillante: roseta guilloché (líneas de 0.14 mm) sobre el negro mate.
+  3-frente-foil.pdf        Foil cobre / oro rosa: marco de cordón, flores de las esquinas, sello circular, GARA y separador.
+  4-frente-gofrado.pdf     Relieve en registro con el foil del sello (flor y anillos): "foil + gofrado".
+
+REVERSO (papel crema / marfil)
+  5-reverso-impresion.pdf  Texto, QR y etiquetas en tinta café oscuro (Pantone 4625 C o K 90 %).
+  6-reverso-barniz-UV.pdf  Barniz UV: flor GARA grande como marca de agua detrás del texto.
+  7-reverso-foil.pdf       Mismo foil: marco, flores, "Gracias por elegir GARA", "Cuídala. Úsala. Vívela.", firma y líneas para escribir.
+
+PAPEL Y ACABADO SUGERIDOS
+  Duplex de 600 g (negro mate + crema algodón pegados) o algodón 600 g.
+  Extra: canto pintado cobre.
+
+El QR lleva a https://garaleathergoods.mx/autentica/ (comprobado).
+Líneas PARA / PIEZA / CÓDIGO: se llenan a mano con pluma dorada.
