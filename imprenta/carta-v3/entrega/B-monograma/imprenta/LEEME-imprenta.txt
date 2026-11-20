@@ -1,0 +1,23 @@
+GARA — Carta de agradecimiento · Propuesta B "MONOGRAMA" (versión 3)
+
+Medida final: 152 x 102 mm. Archivos a 158 x 108 mm (3 mm de sangrado por lado).
+Todo el texto está convertido a curvas. Cada placa va en negro 100 %: el negro marca dónde va cada acabado.
+Foil: líneas mínimas de 0.2 mm y texto mínimo de 2.4 mm (ya cumplen). El foil nunca se encima con el barniz UV.
+
+FRENTE (papel negro mate / soft-touch)
+  1-frente-impresion.pdf    Fondo negro a sangre. Si el papel ya es negro, esta placa NO se imprime.
+  2-frente-barniz-UV.pdf    Barniz UV selectivo brillante: patrón de flores (línea de ~0.35 mm) sobre el negro mate. Deja libre el círculo del sello.
+  3-frente-foil.pdf         Foil cobre / oro: marco doble y sello circular (anillos, texto "Hecho a mano en México · Pieza única · Archivo GARA", flor, GARA y ACAPULCO).
+
+REVERSO (papel marfil)
+  4-reverso-impresion.pdf   Texto, QR y etiquetas en tinta café oscuro (Pantone 4625 C o K 90 %).
+  5-reverso-barniz-UV.pdf   Barniz UV: marco de flores alrededor de la carta (efecto tono sobre tono).
+  6-reverso-foil.pdf        Foil: "Gracias.", línea con flor, "Cuídala. Úsala. Vívela.", etiqueta superior y líneas para llenar a mano.
+
+PAPEL Y ACABADO SUGERIDOS
+  Duplex de 600 g (negro soft-touch + marfil algodón) o algodón 600 g. Extra: canto pintado cobre.
+  El UV fino (línea de 0.35 mm) sale mejor con barniz UV digital (tipo MGI / Scodix) que con serigrafía.
+
+QR: https://garaleathergoods.mx/autentica/ (decodificado y comprobado).
+Líneas PARA / PIEZA / CÓDIGO: se llenan a mano con pluma negra o dorada.
+vista/ trae la simulación del acabado final (no es para imprimir).

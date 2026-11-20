@@ -1,0 +1,22 @@
+GARA — Carta de colección · Propuesta C (versión 3)
+
+Una carta distinta por cada pieza vendida, igual que la tarjeta 3D de la página: el recorte de SU pieza, su nombre, el N.º,
+el propietario y su código. En el reverso: "Gracias, {nombre}", el mensaje de siempre y un QR que abre SU certificado
+(https://garaleathergoods.mx/verify/gara-NNNNNN/ — decodificado y comprobado).
+
+FORMATO
+  Póker 63.5 x 88.9 mm, esquinas redondeadas (radio 3.5 mm). Archivos a 69.5 x 94.9 mm (3 mm de sangrado por lado).
+
+ARCHIVOS (ejemplo: Atlante · GA-CB-26-000150)
+  imprenta/ga-cb-26-000150-imprenta.pdf   2 páginas: frente y reverso, con sangrado. Texto vectorial, foto incrustada.
+  imprenta/ga-cb-26-000150-frente.png     300 dpi con sangrado.      imprenta/ga-cb-26-000150-reverso.png   idem.
+  vista/                                   Simulación con las esquinas ya redondeadas (no es para imprimir).
+  ejemplo-2-legado/                        Segundo ejemplo (nombre largo: "Ángel Brian Bolaina Villegas") para ver que se ajusta solo.
+
+IMPRESIÓN SUGERIDA
+  Digital a todo color en cartulina de 350 g, laminado mate soft-touch, corte troquelado de esquinas redondeadas.
+  Para subirla de nivel: foil holográfico real en el borde y canto dorado (el borde se separa en una placa aparte).
+
+GENERADOR
+  La carta se genera sola desde los datos de la pieza (nombre, número, código, propietario, saludo, color) y su recorte:
+  tools/carta-coleccion en la rama "fuente". Una pieza nueva = una carta nueva en segundos.

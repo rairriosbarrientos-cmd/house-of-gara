@@ -1,0 +1,21 @@
+GARA — Carta de agradecimiento · Propuesta A "PLANO" (versión 3)
+
+Medida final: 152 x 102 mm. Archivos a 158 x 108 mm (3 mm de sangrado por lado).
+Todo el texto está convertido a curvas. Cada placa va en negro 100 %: el negro marca dónde va cada acabado.
+Foil: líneas mínimas de 0.2 mm y texto mínimo de 2.4 mm (ya cumplen). El foil nunca se encima con el barniz UV.
+
+FRENTE (papel negro)
+  1-frente-impresion.pdf   Fondo negro a sangre. Si el papel ya es negro, esta placa NO se imprime.
+  2-frente-foil.pdf        Foil cobre / oro: marcos con zonas 1-6 y A-D, ejes, cotas, la flor GARA a escala 1:1 y el cuadro de rotulación con el logotipo.
+  3-frente-gofrado.pdf     Bajo relieve de la flor, en registro con el foil: "foil + gofrado".
+
+REVERSO (papel marfil)
+  4-reverso-impresion.pdf  Notas generales, QR y pie de página en tinta café oscuro (Pantone 4625 C o K 90 %).
+  5-reverso-foil.pdf       Foil: marcos, "PLANO DE ENTREGA", "Gracias.", numeración de notas, cuadro de entrega y firma en "Aprobó".
+
+PAPEL Y ACABADO SUGERIDOS
+  Duplex de 600 g (negro mate + marfil algodón pegados) o algodón 600 g. Extra: canto pintado cobre.
+
+QR: https://garaleathergoods.mx/autentica/ (decodificado y comprobado).
+Cuadro de entrega (PARA / PIEZA / CÓDIGO / FECHA): se llena a mano con pluma negra o dorada.
+vista/ trae la simulación del acabado final (no es para imprimir).
