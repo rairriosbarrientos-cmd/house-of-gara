@@ -1,0 +1,64 @@
+/* ==========================================================================
+   GARA · estilo propio — piel, oro grabado, puntada y relieve.
+   Solo CSS (sin JavaScript). Se carga en la portada, la colección, las piezas,
+   personaliza, materiales y autenticar. No se usa en /verify, /pagar, /rair ni /mapa.
+   Para quitarlo: borrar el <link rel="stylesheet" href="/nfc/estilo.css"> o este archivo.
+   ========================================================================== */
+:root{
+  --g-foil:linear-gradient(112deg,#b57a30 0%,#f4d79c 20%,#cf9448 46%,#f8e0ae 68%,#c58a3c 88%,#a8672b 100%);
+  --g-oro:linear-gradient(100deg,#c8903d 0%,#f8e0ae 22%,#dba654 44%,#fbe6b8 64%,#d29a48 84%,#f4d79c 100%);
+  --g-grano:url(/nfc/estilo/grano.webp);
+}
+
+/* 1 · La página entera sobre piel de grano plena flor */
+body{background-image:var(--g-grano);background-size:320px 320px}
+.hero-shell:before{
+  background-image:var(--g-grano);background-size:320px 320px;opacity:1;
+  -webkit-mask-image:none;mask-image:none;mix-blend-mode:screen}
+
+/* 2 · Botones de foil dorado (los sólidos de la marca) */
+a.bg-brass,button.bg-brass,a.gi-1{
+  background-image:var(--g-foil);background-size:240% 100%;background-position:0 0;color:#2a1c08;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.55),inset 0 -2px 0 rgba(90,50,10,.42),0 10px 26px -8px rgba(0,0,0,.65),0 0 0 1px rgba(70,36,8,.55);
+  text-shadow:0 1px 0 rgba(255,240,200,.35);
+  transition:background-position .8s ease,filter .25s ease,transform .25s ease,box-shadow .25s ease}
+a.bg-brass:hover,a.bg-brass:focus-visible,a.bg-brass:active,button.bg-brass:hover,button.bg-brass:active,a.gi-1:hover,a.gi-1:active{
+  background-position:100% 0;filter:brightness(1.07) saturate(1.05);transform:translateY(-1px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.6),inset 0 -2px 0 rgba(90,50,10,.42),0 14px 34px -8px rgba(0,0,0,.7),0 0 38px rgba(236,200,120,.28),0 0 0 1px rgba(70,36,8,.55)}
+@media (hover:hover) and (min-width:1024px){.hero-shell a.bg-brass{animation:g-foil 9s ease-in-out infinite}}
+@keyframes g-foil{0%,100%{background-position:0% 0}50%{background-position:100% 0}}
+
+/* 3 · Frases doradas de los títulos: oro grabado (un solo barrido de luz al cargar) */
+h1 .text-brass-bright,h2 .text-brass-bright,h1 .text-brass,h2 .text-brass{
+  background-image:var(--g-oro);background-size:220% 100%;background-position:18% 0;-webkit-background-clip:text;background-clip:text;
+  color:transparent;-webkit-text-fill-color:transparent;text-shadow:none;-webkit-box-decoration-break:clone;box-decoration-break:clone;
+  filter:drop-shadow(0 1px 0 rgba(0,0,0,.5)) drop-shadow(0 6px 14px rgba(0,0,0,.3));
+  animation:g-barrido 2.8s cubic-bezier(.3,.7,.2,1) .9s 1 both}
+@keyframes g-barrido{from{background-position:100% 0}to{background-position:18% 0}}
+/* …y los títulos claros con un relieve suave */
+h1.font-display,h2.font-display{text-shadow:0 -1px 0 rgba(0,0,0,.55),0 1px 0 rgba(255,236,190,.10),0 12px 34px rgba(0,0,0,.4)}
+
+/* 4 · La flor de la portada, con sus venas grabadas (discreta, se desvanece hacia el texto) */
+img.hero-flower{content:url(/nfc/estilo/flor-venas.svg);opacity:.11!important;
+  -webkit-mask-image:linear-gradient(90deg,#000 0%,#000 35%,transparent 92%);mask-image:linear-gradient(90deg,#000 0%,#000 35%,transparent 92%);
+  filter:drop-shadow(0 6px 14px rgba(0,0,0,.55)) drop-shadow(0 0 30px rgba(236,200,120,.14))}
+
+/* 5 · Tarjetas cosidas: marco de puntadas a mano (border-image, sin JavaScript) */
+article.group.relative.rounded-\[2rem\],.gi-c,figure.relative.aspect-square.rounded-xl,a.group.block.overflow-hidden.rounded-lg{position:relative}
+article.group.relative.rounded-\[2rem\]::after,.gi-c::after,figure.relative.aspect-square.rounded-xl::after,a.group.block.overflow-hidden.rounded-lg::after{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:3;box-sizing:border-box}
+article.group.relative.rounded-\[2rem\]::after{border:30px solid transparent;border-image:url(/nfc/estilo/puntada-l.svg) 30/30px round}
+.gi-c::after{border:22px solid transparent;border-image:url(/nfc/estilo/puntada-s.svg) 22/22px round}
+figure.relative.aspect-square.rounded-xl::after,a.group.block.overflow-hidden.rounded-lg::after{border:12px solid transparent;border-image:url(/nfc/estilo/puntada-xs.svg) 12/12px round}
+a.group.block.overflow-hidden.rounded-lg:hover::after{filter:brightness(1.25)}
+
+/* 6 · Costura al pie de la página */
+.site-footer{position:relative;border-top:0}
+.site-footer::before{content:"";position:absolute;left:0;right:0;top:0;height:14px;pointer-events:none;
+  background:url(/nfc/estilo/costura-h.svg) repeat-x 0 0/10px 14px;opacity:.9}
+
+@media (prefers-reduced-motion:reduce){
+  .hero-shell a.bg-brass,h1 .text-brass-bright,h2 .text-brass-bright,h1 .text-brass,h2 .text-brass{animation:none}
+  a.bg-brass,button.bg-brass,a.gi-1{transition:none}
+  a.bg-brass:hover,button.bg-brass:hover,a.gi-1:hover{transform:none}
+}
