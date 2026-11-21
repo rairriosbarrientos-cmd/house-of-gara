@@ -239,7 +239,7 @@ const chispas = capaPuntos(new Array(arcos.length * 3 * 3).fill(0), 0.007, new T
 globo.add(chispas);
 function moverChispas(t) {
   const a = chispas.geometry.attributes.position; let k = 0;
-  arcos.forEach(r => { for (let j = 0; j < 3; j++) { const u = ((t * r.vel + r.off) - j * 0.012) % 1, f = u * (r.pts.length - 1), i0 = Math.floor(f), p = r.pts[i0], q = r.pts[Math.min(i0 + 1, r.pts.length - 1)], w = f - i0;
+  arcos.forEach(r => { for (let j = 0; j < 3; j++) { const u = ((((t * r.vel + r.off) - j * 0.012) % 1) + 1) % 1, f = u * (r.pts.length - 1), i0 = Math.floor(f), p = r.pts[i0], q = r.pts[Math.min(i0 + 1, r.pts.length - 1)], w = f - i0;
     a.setXYZ(k++, p.x + (q.x - p.x) * w, p.y + (q.y - p.y) * w, p.z + (q.z - p.z) * w); } });
   a.needsUpdate = true;
 }
