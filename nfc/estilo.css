@@ -32,7 +32,6 @@ a.bg-brass:hover,a.bg-brass:focus-visible,a.bg-brass:active,button.bg-brass:hove
 h1 .text-brass-bright,h2 .text-brass-bright,h1 .text-brass,h2 .text-brass{
   background-image:var(--g-oro);background-size:220% 100%;background-position:18% 0;-webkit-background-clip:text;background-clip:text;
   color:transparent;-webkit-text-fill-color:transparent;text-shadow:none;-webkit-box-decoration-break:clone;box-decoration-break:clone;
-  filter:drop-shadow(0 1px 0 rgba(0,0,0,.5)) drop-shadow(0 6px 14px rgba(0,0,0,.3));
   animation:g-barrido 2.8s cubic-bezier(.3,.7,.2,1) .9s 1 both}
 @keyframes g-barrido{from{background-position:100% 0}to{background-position:18% 0}}
 /* …y los títulos claros con un relieve suave */
