@@ -1,0 +1,17 @@
+{
+  "base": "tools/certificado-base.png",
+  "foto": "entradas/veta/foto1.png",
+  "nombre": "VETA",
+  "subtitulo": "TARJETERO GARA / EJEMPLAR ÚNICO",
+  "codigo": "GA-TJ-26-000152",
+  "propietario": "Roberto",
+  "fecha": "22 de noviembre de 2026",
+  "detalles": [
+    "Pull-up caoba veteado · Solapa facetada con sello GARA",
+    "Interior coñac · Bolsillo y ranura diagonal · Hilo arena"
+  ],
+  "firma": "Roberto",
+  "url": "https://garaleathergoods.mx/verify/gara-000152/",
+  "titulo": "Certificado GARA — Veta · GA-TJ-26-000152",
+  "salida": "entradas/veta/certificado.pdf"
+}

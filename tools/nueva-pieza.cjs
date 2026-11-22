@@ -4,6 +4,7 @@
  *
  * Uso:
  *   node tools/nueva-pieza.cjs piezas/majin-boo.json --sitio /ruta/a/house-of-gara [--sin-imagenes]
+ *   node tools/nueva-pieza.cjs piezas/veta.json --sitio /ruta/a/house-of-gara --solo-imagenes   (ajustar recorte/fotos de una pieza ya publicada)
  *
  * Toma como plantilla una pieza existente de la MISMA categoría (p. ej. "axioma" para tarjeteros)
  * y genera:
@@ -23,6 +24,7 @@ const args = process.argv.slice(2);
 const cfgPath = args.find((a) => !a.startsWith('--'));
 const sitio = path.resolve(args[args.indexOf('--sitio') + 1] || '.');
 const sinImagenes = args.includes('--sin-imagenes');
+const soloImagenes = args.includes('--solo-imagenes'); // rehace fotos, recorte e imágenes de compartir de una pieza YA dada de alta
 if (!cfgPath || !fs.existsSync(path.join(sitio, 'verify'))) {
   console.error('Uso: node tools/nueva-pieza.cjs pieza.json --sitio /ruta/house-of-gara');
   process.exit(1);
@@ -44,7 +46,7 @@ function productosDelInicio() {
 const productos = productosDelInicio();
 const tpl = productos.find((p) => p.slug === cfg.plantilla);
 if (!tpl) fail(`Plantilla "${cfg.plantilla}" no existe. Opciones: ${productos.map((p) => p.slug).join(', ')}`);
-if (productos.some((p) => p.slug === cfg.slug)) fail(`Ya existe un producto con slug "${cfg.slug}"`);
+if (!soloImagenes && productos.some((p) => p.slug === cfg.slug)) fail(`Ya existe un producto con slug "${cfg.slug}"`);
 
 const tplNum = tpl.description.match(/GA-[A-Z]+-\d+-(\d{6})/)[1];
 const tplCode = tpl.description.match(/(GA-[A-Z]+-\d+-\d{6})/)[1];
@@ -61,7 +63,7 @@ const num = String(cfg.numero).padStart(6, '0');
 const code = cfg.codigo.toUpperCase();
 if (!code.endsWith(num)) fail('El código debe terminar con el número de la pieza');
 const serial = `gara-${num}`;
-if (fs.existsSync(S('verify', serial))) fail(`verify/${serial} ya existe`);
+if (!soloImagenes && fs.existsSync(S('verify', serial))) fail(`verify/${serial} ya existe`);
 for (const k of ['slug', 'nombre', 'propietario', 'saludo', 'fecha', 'historia', 'descripcion', 'color', 'materiales'])
   if (!cfg[k]) fail(`Falta "${k}" en ${cfgPath}`);
 if (cfg.materiales.length !== tpl.materials.length)
@@ -335,6 +337,12 @@ async function compartir() {
 
 (async () => {
   console.log(`Plantilla: ${tpl.name} (${tplCode}, ${tplOwner}) → ${cfg.nombre} (${code}, ${cfg.propietario})`);
+  if (soloImagenes) {
+    if (!fs.existsSync(S('verify', serial))) fail(`--solo-imagenes necesita que la pieza ya exista (verify/${serial})`);
+    await archivos();
+    await compartir();
+    return console.log('\nImágenes rehechas (fotos, recorte, compartir y vista previa).');
+  }
   await archivos();
   await paginasVerify();
   ficha();
