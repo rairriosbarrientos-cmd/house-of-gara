@@ -78,6 +78,13 @@
    "piezas": 1,
    "lado": "izq",
    "arriba": true
+  },
+  {
+   "nombre": "Cinco Minas, Jalisco",
+   "lat": 21.04,
+   "lon": -103.93,
+   "piezas": 1,
+   "lado": "der"
   }
  ],
  "proximamente": [
