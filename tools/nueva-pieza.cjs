@@ -351,6 +351,13 @@ async function compartir() {
   sitemap();
   require('child_process').execFileSync('python3', [path.join(__dirname, 'cuidado-ics.py'), sitio], { stdio: 'ignore' });
   ok('Recordatorio de cuidado (nfc/cuidado/' + code.toLowerCase() + '.ics)');
+  // Roles de las fotos (portada/interior/reverso/detalle/alterna) y manifiesto de la colección editorial.
+  const rolesPath = path.join(__dirname, 'fotos-roles.json');
+  const RR = JSON.parse(read(rolesPath));
+  (cfg.fotos || []).forEach((f, i) => { RR.roles[`${cfg.slug}-0${i + 1}`] = (cfg.rolesFotos || [])[i] || (i === 0 ? 'portada' : 'alterna'); });
+  write(rolesPath, JSON.stringify(RR, null, 1));
+  if (!cfg.rolesFotos) console.log('  ! Sin "rolesFotos" en la ficha: foto 1 = portada y las demás "alterna". Ejemplo: "rolesFotos": ["portada","reverso","interior"]');
+  require('child_process').execFileSync('node', [path.join(__dirname, 'coleccion-manifest.cjs'), sitio], { stdio: 'inherit', env: Object.assign({}, process.env, { NODE_PATH: path.join(__dirname, 'node_modules') }) });
   if (!sinImagenes) await compartir();
   console.log(`\nListo. NFC: https://garaleathergoods.mx/verify/${serial}-nfc`);
 })().catch((e) => fail(e.stack || e));
