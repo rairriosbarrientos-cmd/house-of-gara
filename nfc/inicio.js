@@ -32,6 +32,24 @@
     for (var k in el) if (k.indexOf('__reactFiber') === 0 || k.indexOf('__reactProps') === 0) return true;
     return false;
   }
+  // "Explora por tipo": cinco entradas a la colección con la portada real de una pieza de cada tipo.
+  var TIPOS = [['cartera', 'Carteras', 'atlante'], ['tarjetero', 'Tarjeteros', 'veta'], ['bolsa', 'Bolsas', 'bolsa-candado-dorado'], ['neceser', 'Neceseres', 'ignis'], ['estuche', 'Estuches', 'campana']];
+  function tipos(hero) {
+    if (document.getElementById('tipos-gara')) return;
+    fetch('/nfc/coleccion.json').then(function (r) { return r.json(); }).then(function (D) {
+      if (document.getElementById('tipos-gara') || !enInicio()) return;
+      var sec = document.createElement('section'); sec.id = 'tipos-gara'; sec.className = 'gh-tipos';
+      var html = '<p class="k">La colección</p><h2>Cada pieza guarda un lugar, una mano y <em>una historia.</em></h2><div class="gh-fila">';
+      TIPOS.forEach(function (t) {
+        var p = D.piezas.filter(function (x) { return x.slug === t[2]; })[0]; if (!p) return;
+        var n = D.piezas.filter(function (x) { return x.tipo === t[0]; }).length, f = p.fotos.filter(function (x) { return x.rol === 'portada'; })[0] || p.fotos[0];
+        html += '<a href="/productos/?tipo=' + t[0] + '"><img src="' + f.src + '" alt="' + p.nombre + '" loading="lazy" decoding="async"><span>' + t[1] + '<small>' + n + (n === 1 ? ' pieza' : ' piezas') + '</small></span></a>';
+      });
+      sec.innerHTML = html + '</div>';
+      hero.insertAdjacentElement('afterend', sec);
+      setTimeout(function () { try { window.dispatchEvent(new Event('resize')); } catch (e) {} }, 60);
+    }).catch(function () {});
+  }
   function colocar() {
     var ya = document.getElementById('experiencia-gara');
     if (!enInicio()) { if (ya) ya.remove(); return; }
@@ -39,6 +57,7 @@
     var hero = document.querySelector('section.hero-shell'); // justo debajo de la portada
     if (!hero || !hero.parentElement) return;
     hero.insertAdjacentElement('afterend', construir());
+    tipos(hero);
     // La galería fija calculó su posición antes de insertar la sección: pedirle que la recalcule.
     setTimeout(function () { try { window.dispatchEvent(new Event('resize')); } catch (e) {} }, 60);
   }
